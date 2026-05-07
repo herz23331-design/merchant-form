@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商家产品信息填报 — 大健康赛道</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Noto Sans SC', sans-serif;
+    background: #f5f5f5;
+    color: #1a1a1a;
+  }
+  .top-bar {
+    background: linear-gradient(135deg, #FF2442, #FF6B8A);
+    color: #fff;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .top-bar h1 { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+  .top-bar p { font-size: 0.82rem; opacity: 0.85; }
+  .form-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 100px;
+  }
+  .section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FF2442;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .icon { font-size: 1.2rem; }
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  label .required { color: #FF2442; margin-left: 2px; }
+  input[type="text"],
+  input[type="url"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafafa;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: #FF2442;
+    background: #fff;
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  .hint { font-size: 0.72rem; color: #999; margin-top: 4px; }
+  .product-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #fafafa;
+    position: relative;
+  }
+  .product-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .product-card .card-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #FF2442;
+  }
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .remove-btn:hover { color: #FF2442; background: #fee; }
+  .img-upload-area { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .img-slot {
+    width: 72px; height: 72px; border: 2px dashed #ddd; border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; position: relative; overflow: hidden; background: #fafafa;
+    transition: border-color 0.2s;
+  }
+  .img-slot:hover { border-color: #FF2442; }
+  .img-slot.has-img { border-style: solid; border-color: #eee; }
+  .img-slot.has-img img { width: 100%; height: 100%; object-fit: cover; }
+  .img-slot .plus { font-size: 1.4rem; color: #ccc; line-height: 1; }
+  .img-slot .img-label { font-size: 0.6rem; color: #bbb; margin-top: 2px; }
+  .img-slot .rm-img {
+    position: absolute; top: 2px; right: 2px; width: 16px; height: 16px;
+    background: rgba(0,0,0,0.5); color: #fff; border-radius: 50%; border: none;
+    font-size: 0.6rem; cursor: pointer; display: none; align-items: center; justify-content: center;
+  }
+  .img-slot.has-img .rm-img { display: flex; }
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    background: transparent;
+    color: #999;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .add-btn:hover { border-color: #FF2442; color: #FF2442; }
+  .submit-area {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+    z-index: 100;
+  }
+  .submit-inner { max-width: 720px; margin: 0 auto; }
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #FF2442, #FF4466);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,36,66,0.3); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 20px 32px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .toast .toast-icon { font-size: 2rem; margin-bottom: 8px; }
+  .char-count { font-size: 0.7rem; color: #ccc; text-align: right; margin-top: 2px; }
+  /* 提交失败条 */
+  .error-bar {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FF2442;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    z-index: 300;
+    box-shadow: 0 4px 16px rgba(255,36,66,0.3);
+    text-align: center;
+    max-width: 90vw;
+    line-height: 1.5;
+  }
+  /* 成功页 */
+  .success-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0a1628, #1a2a4a);
+    z-index: 400;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+  }
+  .success-page.show { display: flex; }
+  /* Loading spinner */
+  .spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>📝 商家产品信息填报</h1>
+  <p>请如实填写以下信息，便于小红书买手团队了解您的品牌和商品</p>
+</div>
+
+<div class="form-container" id="formContainer">
+  <form id="merchantForm">
+
+    <!-- 一、商家基本信息 -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🏢</span> 商家基本信息</div>
+      <div class="field">
+        <label>商家ID <span class="required">*</span></label>
+        <input type="text" id="merchantId" placeholder="如：5ddb61e98afb1f0001ebd808" required>
+      </div>
+      <div class="field">
+        <label>商家/店铺名称 <span class="required">*</span></label>
+        <input type="text" id="merchantName" placeholder="如：Apple诚顺旗舰店" required>
+      </div>
+    </div>
+
+    <!-- 二、品牌介绍 -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🏷️</span> 品牌介绍</div>
+      <div class="field">
+        <label>品牌名称 <span class="required">*</span></label>
+        <input type="text" id="brandName" placeholder="如：苹果 / Apple" required>
+      </div>
+      <div class="field">
+        <label>品牌一句话介绍 <span class="required">*</span></label>
+        <textarea id="brandIntro" placeholder="用一句话描述品牌的核心定位或特色" maxlength="100" required></textarea>
+        <div class="char-count"><span id="brandIntroCount">0</span>/100</div>
+      </div>
+      <div class="field">
+        <label>商家/品牌优势 <span class="required">*</span></label>
+        <textarea id="advantages" placeholder="请描述品牌的核心优势，如：设计团队、主打优势、库存深度、合作亮点等" required></textarea>
+      </div>
+    </div>
+
+    <!-- 三、商品信息 -->
+    <div class="section">
+      <div class="section-title"><span class="icon">📦</span> 主推商品信息</div>
+      <div id="productList"></div>
+      <button type="button" class="add-btn" id="addProductBtn" onclick="addProduct()">+ 添加主推商品</button>
+      <div class="hint" style="margin-top:8px;">至少添加1个主推商品</div>
+    </div>
+
+    <!-- 四、分销合作意向 -->
+    <div class="section">
+      <div class="section-title"><span class="icon">🤝</span> 分销合作意向</div>
+      <div class="field">
+        <label>佣金率 <span class="required">*</span></label>
+        <input type="text" id="commission" placeholder="如：20%-25%" required>
+      </div>
+      <div class="field">
+        <label>寄样政策 <span class="required">*</span></label>
+        <select id="samplePolicy" required>
+          <option value="">请选择</option>
+          <option value="免费寄样">免费寄样</option>
+          <option value="付费寄样">付费寄样</option>
+          <option value="仅正装样品">仅正装样品</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>是否愿意出蒲公英合作费用（种收联动）<span class="required">*</span></label>
+        <select id="dandelion" required>
+          <option value="">请选择</option>
+          <option value="是">是</option>
+          <option value="否">否</option>
+          <option value="可协商">可协商</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>是否愿意参加宠粉清单合作 <span class="required">*</span></label>
+        <select id="fanlist" required>
+          <option value="">请选择</option>
+          <option value="是">是</option>
+          <option value="否">否</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>单坑库存上限</label>
+        <input type="text" id="stockLimit" placeholder="如：1000件">
+      </div>
+    </div>
+
+    <!-- 五、商务对接人 -->
+    <div class="section">
+      <div class="section-title"><span class="icon">👤</span> 品牌商务对接人</div>
+      <div class="field">
+        <label>对接人姓名 <span class="required">*</span></label>
+        <input type="text" id="contactName" placeholder="如：王小朝" required>
+      </div>
+      <div class="field">
+        <label>联系方式（手机号/微信号）<span class="required">*</span></label>
+        <input type="text" id="contactPhone" placeholder="手机号或微信号" required>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- 提交失败提示 -->
+<div class="error-bar" id="submitError">
+  ⚠️ 提交失败，请检查网络后重试。如多次失败请截图联系小红书运营。
+</div>
+
+<!-- 提交成功页 -->
+<div class="success-page" id="successPage">
+  <div style="font-size:4rem;margin-bottom:16px;">✅</div>
+  <div style="font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:8px;">提交成功！</div>
+  <div style="font-size:0.9rem;color:rgba(255,255,255,0.7);margin-bottom:6px;">
+    <span id="successName" style="color:#FF6B8A;font-weight:600"></span> 的信息已收到
+  </div>
+  <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:32px;">
+    感谢您配合填写，小红书运营团队将尽快与您联系
+  </div>
+  <div style="background:rgba(255,255,255,0.08);border-radius:14px;padding:16px 24px;color:rgba(255,255,255,0.7);font-size:0.78rem;line-height:1.8;max-width:320px;">
+    📌 请截图本页面留存，作为提交凭证<br>
+    📞 如有疑问请联系您的小红书对接 AM
+  </div>
+</div>
+
+<!-- Submit bar -->
+<div class="submit-area" id="submitArea">
+  <div class="submit-inner">
+    <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">提交信息</button>
+  </div>
+</div>
+
+<script>
+// ── 商品卡片 ──
+let productCount = 0;
+
+window.addProduct = function() {
+  productCount++;
+  const idx = productCount;
+  const container = document.getElementById('productList');
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.id = 'product-' + idx;
+  card.innerHTML =
+    '<div class="card-header">' +
+      '<span class="card-title">主推商品 #' + idx + '</span>' +
+      '<button type="button" class="remove-btn" onclick="removeProduct(' + idx + ')">✕</button>' +
+    '</div>' +
+    '<div class="field">' +
+      '<label>商品名称 <span class="required">*</span></label>' +
+      '<input type="text" class="p-name" placeholder="如：AirPods Pro 2" required>' +
+    '</div>' +
+    '<div class="field">' +
+      '<label>小红书商品链接</label>' +
+      '<input type="text" class="p-url" placeholder="https://www.xiaohongshu.com/goods-detail/...">' +
+    '</div>' +
+    '<div class="field">' +
+      '<label>商品价格（元）</label>' +
+      '<input type="text" class="p-price" placeholder="如：1299">' +
+    '</div>' +
+    '<div class="field">' +
+      '<label>产品核心卖点 <span class="required">*</span></label>' +
+      '<textarea class="p-selling" placeholder="描述产品的核心卖点、差异化优势" required></textarea>' +
+    '</div>' +
+    '<div class="field">' +
+      '<label>商品主图 <span style="color:#999;font-weight:400;">（选填，最多4张）</span></label>' +
+      '<div class="img-upload-area" id="imgArea-' + idx + '">' +
+        '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
+        '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
+        '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
+        '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
+      '</div>' +
+      '<input type="file" id="imgInput-' + idx + '" accept="image/*" style="display:none" onchange="handleImgSelect(this, ' + idx + ')">' +
+      '<div style="font-size:0.7rem;color:#bbb;margin-top:4px;">支持 JPG / PNG，单张建议不超过 5MB</div>' +
+    '</div>';
+  container.appendChild(card);
+}
+
+window.removeProduct = function(idx) {
+  const card = document.getElementById('product-' + idx);
+  if (card) card.remove();
+}
+
+// ── 图片上传 ──
+window.triggerImgUpload = function(idx, slot) {
+  if (slot.classList.contains('has-img')) return;
+  document.getElementById('imgInput-' + idx).click();
+};
+
+window.handleImgSelect = function(input, idx) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const MAX = 1200;
+      let w = img.width, h = img.height;
+      if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+      else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL('image/jpeg', 0.92);
+
+      const area = document.getElementById('imgArea-' + idx);
+      const emptySlot = area.querySelector('.img-slot:not(.has-img)');
+      if (!emptySlot) return;
+      emptySlot.classList.add('has-img');
+      emptySlot.innerHTML =
+        '<img src="' + compressed + '">' +
+        '<button class="rm-img" onclick="event.stopPropagation();removeImg(this)">✕</button>';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+};
+
+window.removeImg = function(btn) {
+  const slot = btn.closest('.img-slot');
+  slot.classList.remove('has-img');
+  slot.innerHTML = '<div class="plus">＋</div><div class="img-label">点击上传</div>';
+  const area = slot.closest('.img-upload-area');
+  const idx = area.id.replace('imgArea-', '');
+  slot.onclick = function() { window.triggerImgUpload(idx, slot); };
+};
+
+// ── 字数统计 ──
+document.getElementById('brandIntro').addEventListener('input', function() {
+  document.getElementById('brandIntroCount').textContent = this.value.length;
+});
+
+// ── 表单收集 ──
+function collectFormData() {
+  const products = [];
+  document.querySelectorAll('.product-card').forEach(card => {
+    const images = [];
+    card.querySelectorAll('.img-slot.has-img img').forEach(img => images.push(img.src));
+    products.push({
+      name: card.querySelector('.p-name').value.trim(),
+      url: card.querySelector('.p-url').value.trim(),
+      price: card.querySelector('.p-price').value.trim(),
+      sellingPoints: card.querySelector('.p-selling').value.trim(),
+      images: images,
+    });
+  });
+
+  return {
+    merchantId: document.getElementById('merchantId').value.trim(),
+    merchantName: document.getElementById('merchantName').value.trim(),
+    brandName: document.getElementById('brandName').value.trim(),
+    brandIntro: document.getElementById('brandIntro').value.trim(),
+    advantages: document.getElementById('advantages').value.trim(),
+    products: products,
+    commission: document.getElementById('commission').value.trim(),
+    samplePolicy: document.getElementById('samplePolicy').value,
+    dandelion: document.getElementById('dandelion').value,
+    fanlist: document.getElementById('fanlist').value,
+    stockLimit: document.getElementById('stockLimit').value.trim(),
+    contactName: document.getElementById('contactName').value.trim(),
+    contactPhone: document.getElementById('contactPhone').value.trim(),
+  };
+}
+
+// ── 提交 ──
+window.handleSubmit = async function() {
+  const data = collectFormData();
+
+  // 校验必填
+  const required = [
+    { key: 'merchantId', msg: '请填写商家ID' },
+    { key: 'merchantName', msg: '请填写商家/店铺名称' },
+    { key: 'brandName', msg: '请填写品牌名称' },
+    { key: 'brandIntro', msg: '请填写品牌一句话介绍' },
+    { key: 'advantages', msg: '请填写商家/品牌优势' },
+    { key: 'commission', msg: '请填写佣金率' },
+    { key: 'samplePolicy', msg: '请选择寄样政策' },
+    { key: 'dandelion', msg: '请选择是否愿意出蒲公英合作费用' },
+    { key: 'fanlist', msg: '请选择是否愿意参加宠粉清单合作' },
+    { key: 'contactName', msg: '请填写对接人姓名' },
+    { key: 'contactPhone', msg: '请填写联系方式' },
+  ];
+  for (const r of required) {
+    if (!data[r.key]) { alert(r.msg); return; }
+  }
+  if (data.products.length === 0) { alert('请至少添加一个主推商品'); return; }
+  for (const p of data.products) {
+    if (!p.name) { alert('请填写商品名称'); return; }
+    if (!p.sellingPoints) { alert('请填写产品核心卖点'); return; }
+    // 图片改为选填，不再校验
+  }
+
+  // 提交中状态
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>提交中，请稍候…';
+
+  const SCF_URL = 'https://1425621059-hzwr70wlcu.ap-shanghai.tencentscf.com';
+
+  function showError(msg) {
+    btn.disabled = false;
+    btn.textContent = '重新提交';
+    const errBar = document.getElementById('submitError');
+    errBar.innerHTML = '⚠️ ' + msg + '<br><span style="font-size:0.75rem;opacity:0.85;">如多次失败，请截图联系小红书运营 AM</span>';
+    errBar.style.display = 'block';
+    setTimeout(() => { errBar.style.display = 'none'; }, 8000);
+  }
+
+  try {
+    const resp = await fetch(SCF_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!resp.ok) {
+      throw new Error('网络异常（状态码 ' + resp.status + '），请稍后重试');
+    }
+
+    const result = await resp.json();
+    if (!result.success) throw new Error(result.error || '服务端返回失败');
+
+    // 成功
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('submitArea').style.display = 'none';
+    document.getElementById('successPage').classList.add('show');
+    document.getElementById('successName').textContent = data.merchantName;
+
+  } catch (e) {
+    console.error('提交失败:', e);
+    showError(e.message || '提交失败，请检查网络后重试');
+  }
+}
+
+// 初始化一个商品卡片
+addProduct();
+</script>
+
+</body>
+</html>
