@@ -394,7 +394,7 @@ window.addProduct = function() {
       '<textarea class="p-selling" placeholder="描述产品的核心卖点、差异化优势" required></textarea>' +
     '</div>' +
     '<div class="field">' +
-      '<label>商品主图 <span style="color:#999;font-weight:400;">（选填，最多4张）</span></label>' +
+      '<label>商品主图 <span class="required">*</span> <span style="color:#999;font-weight:400;">（至少1张，最多4张）</span></label>' +
       '<div class="img-upload-area" id="imgArea-' + idx + '">' +
         '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
         '<div class="img-slot" onclick="triggerImgUpload(' + idx + ', this)"><div class="plus">＋</div><div class="img-label">点击上传</div></div>' +
@@ -519,7 +519,7 @@ window.handleSubmit = async function() {
   for (const p of data.products) {
     if (!p.name) { alert('请填写商品名称'); return; }
     if (!p.sellingPoints) { alert('请填写产品核心卖点'); return; }
-    // 图片改为选填，不再校验
+    if (!p.images || p.images.length === 0) { alert('请为商品「' + (p.name||'') + '」上传至少一张主图'); return; }
   }
 
   // 提交中状态
