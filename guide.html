@@ -2444,7 +2444,6 @@ function submitLead(productId, productName) {
   const info = (document.getElementById('lead-info') || {}).value || '';
 
   if (!name.trim() || !contact.trim()) {
-    // 简单高亮必填项
     if (!name.trim()) {
       const el = document.getElementById('lead-name');
       if (el) { el.style.borderColor = '#ff4d6d'; el.focus(); }
@@ -2455,12 +2454,19 @@ function submitLead(productId, productName) {
     return;
   }
 
-  // 模拟提交（可后续接入真实接口）
   const btn = document.getElementById('lead-submit-btn');
   if (btn) { btn.textContent = '提交中…'; btn.style.opacity = '.6'; btn.disabled = true; }
 
-  setTimeout(() => {
-    // 替换弹窗内容为成功状态
+  const prod = (EXTRA_PRODUCTS||[]).find(p=>p.id===productId)||(PRODUCTS||[]).find(p=>p.id===productId)||{};
+  const brand = prod.brand || '';
+
+  fetch('https://1425621059-hzwr70wlcu.ap-shanghai.tencentscf.com/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, contact, info, product: productName, brand })
+  })
+  .then(r => r.json())
+  .then(data => {
     const overlay = document.getElementById('lead-modal-overlay');
     if (!overlay) return;
     const pal = (DETAIL_DATA[productId] || {}).palette || null;
@@ -2476,25 +2482,11 @@ function submitLead(productId, productName) {
         <button onclick="document.getElementById('lead-modal-overlay').remove()"
           style="padding:10px 32px;background:rgba(${rgb},0.15);border:1px solid rgba(${rgb},0.4);border-radius:24px;color:rgba(255,255,255,.8);font-size:12px;cursor:pointer;font-family:'IBM Plex Sans SC',sans-serif">关闭</button>
       </div>`;
-    // 写入飞书多维表格
-    (async () => {
-      try {
-        // 存入 localStorage
-        const ts = new Date().toLocaleString('zh-CN',{hour12:false,timeZone:'Asia/Shanghai'}).replace(/\//g,'-');
-        const prod = EXTRA_PRODUCTS.find(p=>p.id===productId)||PRODUCTS.find(p=>p.id===productId)||{};
-        const record = { ts, name, contact, info: info||'', productName, brand: prod.brand||'', status:'待跟进', id: Date.now() };
-        try {
-          const existing = JSON.parse(localStorage.getItem('lead_records')||'[]');
-          existing.push(record);
-          localStorage.setItem('lead_records', JSON.stringify(existing));
-          console.log('[Lead saved]', record);
-        } catch(e) { console.warn('localStorage error', e); }
-      } catch(e) {
-        console.warn('[Lead write failed]', e);
-        // 静默失败，不影响用户体验
-      }
-    })();
-  }, 900);
+  })
+  .catch(e => {
+    if (btn) { btn.textContent = '立即合作'; btn.style.opacity = '1'; btn.disabled = false; }
+    alert('提交失败，请稍后重试');
+  });
 }
 
 function copyWechat() {
