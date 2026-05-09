@@ -1129,7 +1129,7 @@ function showDetail(productId) {
   if (!currentProduct) return;
 
   document.getElementById('detail-title').textContent = currentProduct.name;
-  document.getElementById('detail-buy-link').href = currentProduct.buyUrl;
+  document.getElementById('detail-buy-link').href = currentProduct.buyUrl || (currentProduct.goodsLinks && currentProduct.goodsLinks[0] && currentProduct.goodsLinks[0].url) || '#';
 
   const content = document.getElementById('detail-content');
   content.innerHTML = getDetailHTML(currentProduct);
