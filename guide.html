@@ -378,6 +378,7 @@ canvas{display:block;}
 .pc-price{font-family:'Bebas Neue';font-size:1.4rem;color:#fff;line-height:1;}
 .pc-price sup{font-size:.4em;vertical-align:top;margin-top:.2em;}
 .pc-price-old{font-size:10px;color:var(--muted);text-decoration:line-through;}
+.pc-comm-label{font-size:10px;color:var(--muted);}
 .pc-price-range{font-family:'Bebas Neue';font-size:1rem;color:rgba(255,255,255,.7);line-height:1;}
 .pc-cta{font-size:10px;color:var(--rose2);display:flex;align-items:center;gap:3px;}
 .pc-cta.gem{color:#7ec8c8;}
@@ -1047,7 +1048,7 @@ function renderProductCard(p, isGem=false) {
         </div>
         <div class="pc-price-row">
           <div>
-            <div class="pc-price-old">\u4f63\u91d1\u7387 ${p.commLabel}</div>
+            <div class="pc-comm-label">佣金率 ${p.commLabel}</div>
             <div class="pc-price-range">${p.priceLabel}</div>
           </div>
           <div class="${ctaClass}">\u67e5\u770b\u8be6\u60c5 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg></div>
