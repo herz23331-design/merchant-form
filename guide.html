@@ -1073,10 +1073,10 @@ function renderProductCard(p, isGem=false) {
       </div>
       <div class="pc-price-row">
         <div>
-          <div class="pc-price-old">\u65e5\u5e38\u4ef7 ¥${p.priceOld}</div>
-          <div class="pc-price"><sup>¥</sup>${p.price}</div>
+          <div class="pc-comm-label">佣金率 ${p.commLabel}</div>
+          <div class="pc-price-range">${p.priceLabel}</div>
         </div>
-        <div class="${ctaClass}">\u67e5\u770b\u8be6\u60c5 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="${ctaClass}">查看详情 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </div>
     </div>
   </div>`;
