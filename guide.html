@@ -1087,7 +1087,7 @@ function goToCatalog() {
   // 现有爆品：8周数据按月折算，达到 G4/G5/G6 门槛
   const HERO_IDS = ['wonderla1','nf1','nf2','org1','org2','phatma1','mitoq4'];
   // 潜力发现：周环比 DGMV>10%次数≥3，或未达爆品门槛
-  const GEM_IDS = ['wonderla1','nf1','org1','mitoq4','mitoq5','mitoq6','mbl1','mbl2','dryaseo1','dryaseo2'];
+  const GEM_IDS = ['mitoq5','mitoq6','mbl1','mbl2','dryaseo1','dryaseo2'];
 
   const allProducts = [...PRODUCTS, ...EXTRA_PRODUCTS];
   const heroPool = allProducts.filter(p => HERO_IDS.includes(p.id));
