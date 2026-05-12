@@ -527,8 +527,6 @@ window.handleSubmit = async function() {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>提交中，请稍候…';
 
-  const SCF_URL = 'https://1425621059-hzwr70wlcu.ap-shanghai.tencentscf.com';
-
   function showError(msg) {
     btn.disabled = false;
     btn.textContent = '重新提交';
