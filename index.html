@@ -544,15 +544,30 @@ window.handleSubmit = async function() {
   document.getElementById('successPage').classList.add('show');
   document.getElementById('successName').textContent = data.merchantName;
 
-  // 后台静默发送到 SCF → 写飞书 bitable
+  // 主备双写：SCF 失败自动切 Cloudflare Workers
+  const SCF_URL = 'https://1425621059-hzwr70wlcu.ap-shanghai.tencentscf.com';
+  const CF_URL  = 'https://merchant-submit.1accf744.workers.dev';
+  const body = JSON.stringify(data);
+  const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body };
+
+  let sent = false;
   try {
-    await fetch('https://1425621059-hzwr70wlcu.ap-shanghai.tencentscf.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
+    const r = await Promise.race([
+      fetch(SCF_URL, opts),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
+    ]);
+    if (r.ok) { sent = true; console.log('✅ SCF 写入成功'); }
   } catch (e) {
-    console.error('数据上报失败（用户已看到成功页）:', e);
+    console.warn('SCF 失败，切换 Cloudflare:', e.message);
+  }
+
+  if (!sent) {
+    try {
+      const r2 = await fetch(CF_URL, opts);
+      if (r2.ok) console.log('✅ Cloudflare 写入成功');
+    } catch (e2) {
+      console.error('两个后端均失败:', e2.message);
+    }
   }
 }
 
