@@ -5,7 +5,7 @@
 /* ============================================================
    SYSTEM INJECTED CODE — DO NOT MODIFY!
    html-go-live Beta 模式拦截层（自动注入）
-   generated : 2026-05-08 16:10:14
+   generated : 2026-05-11 13:55:41
    用法：
      开启 Beta: localStorage.setItem('_fin_api_mode_', 'BETA'); location.reload();
      关闭 Beta: localStorage.removeItem('_fin_api_mode_'); location.reload();
@@ -630,11 +630,10 @@ canvas{display:block;}
         <select id="filter-country" onchange="applyExtraFilters()"
           style="background:rgba(255,255,255,.05);border:1px solid var(--line);color:#fff;border-radius:8px;padding:7px 14px;font-size:11px;outline:none;cursor:pointer;font-family:'IBM Plex Sans SC',sans-serif;">
           <option value="">🌍 全部国家</option>
-          <option value="CN">🇨🇳 中国</option>
-          <option value="NZ">🇳🇿 新西兰</option>
+          <option value="JP">🇯🇵 日本</option>
+          <option value="AU">🇦🇺 澳洲</option>
           <option value="US">🇺🇸 美国</option>
-          <option value="CA">🇨🇦 加拿大</option>
-          <option value="KR">🇰🇷 韩国</option>
+          <option value="CN">🇨🇳 中国</option>
         </select>
         <select id="filter-price" onchange="applyExtraFilters()"
           style="background:rgba(255,255,255,.05);border:1px solid var(--line);color:#fff;border-radius:8px;padding:7px 14px;font-size:11px;outline:none;cursor:pointer;font-family:'IBM Plex Sans SC',sans-serif;">
@@ -3111,7 +3110,7 @@ document.addEventListener('DOMContentLoaded', () => {
    Modifying this block will break watermark functionality!!
    html-go-live 安全水印层（自动注入）
    dashboardId  : A414F7ABBA68390EA285E619149D0BBB
-   generated    : 2026-05-08 16:10:16
+   generated    : 2026-05-11 13:55:43
    ============================================================ */
 (function () {
   'use strict';
@@ -3137,8 +3136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var username = displayName.replace(/\(.*?\)$/, '').trim() || displayName;
       var email = u.email || '';
       var emailPrefix = email.split('@')[0];
-      var result = { username: username, email: email, emailPrefix: emailPrefix 
-};
+      var result = { username: username, email: email, emailPrefix: emailPrefix };
       window.__XHS_WM_USER__ = result;
       return result;
     });
