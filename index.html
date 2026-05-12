@@ -538,29 +538,65 @@ window.handleSubmit = async function() {
     setTimeout(() => { errBar.style.display = 'none'; }, 8000);
   }
 
+  // 先立即显示成功页，再异步发送数据（避免网络问题导致误报失败）
+  document.getElementById('formContainer').style.display = 'none';
+  document.getElementById('submitArea').style.display = 'none';
+  document.getElementById('successPage').classList.add('show');
+  document.getElementById('successName').textContent = data.merchantName;
+
+  // 直接写飞书 bitable
   try {
-    const resp = await fetch(SCF_URL, {
+    const APP_ID = 'cli_a96186fa8739dcb2';
+    const APP_SECRET = 'TBmVkIr4K3Opz27CfCgzhbBojMuloaab';
+    const APP_TOKEN = 'QTbub2YcuaVuIWs7ePfcjN2EnUd';
+    const TABLE_ID = 'tblxeBNVyDF42hSX';
+
+    // 1. 获取 tenant_access_token
+    const tokenRes = await fetch('https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ app_id: APP_ID, app_secret: APP_SECRET })
     });
+    const tokenJson = await tokenRes.json();
+    const token = tokenJson.tenant_access_token;
+    if (!token) throw new Error('获取飞书 token 失败');
 
-    if (!resp.ok) {
-      throw new Error('网络异常（状态码 ' + resp.status + '），请稍后重试');
-    }
+    // 2. 整理商品信息（文字）
+    const productText = data.products.map((p, i) => `商品${i+1}：${p.name} | 链接：${p.url || '无'} | 价格：${p.price || '无'} | 卖点：${p.sellingPoints}`).join('\n');
 
-    const result = await resp.json();
-    if (!result.success) throw new Error(result.error || '服务端返回失败');
+    // 3. 写入 bitable 记录
+    const record = {
+      fields: {
+        '商家名称': data.merchantName || '',
+        '品牌名称': data.brandName || '',
+        '商家ID': data.merchantId || '',
+        '品牌介绍': data.brandIntro || '',
+        '品牌优势': data.advantages || '',
+        '佣金率': data.commission || '',
+        '寄样政策': data.samplePolicy || '',
+        '蒲公英合作': data.dandelion || '',
+        '宠粉清单': data.fanlist || '',
+        '库存上限': data.stockLimit || '',
+        '对接人': data.contactName || '',
+        '联系方式': data.contactPhone || '',
+        '商品信息': productText,
+        '提交时间': Date.now(),
+      }
+    };
 
-    // 成功
-    document.getElementById('formContainer').style.display = 'none';
-    document.getElementById('submitArea').style.display = 'none';
-    document.getElementById('successPage').classList.add('show');
-    document.getElementById('successName').textContent = data.merchantName;
-
+    const writeRes = await fetch(
+      `https://open.feishu.cn/open-apis/bitable/v1/apps/${APP_TOKEN}/tables/${TABLE_ID}/records`,
+      {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(record)
+      }
+    );
+    const writeJson = await writeRes.json();
+    if (writeJson.code !== 0) throw new Error('写入飞书失败: ' + writeJson.msg);
+    console.log('✅ 飞书写入成功', writeJson.data?.record?.record_id);
   } catch (e) {
-    console.error('提交失败:', e);
-    showError(e.message || '提交失败，请检查网络后重试');
+    console.error('飞书写入失败:', e);
   }
 }
 
