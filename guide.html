@@ -1795,13 +1795,19 @@ function getDetailHTML(p) {
     <div class="op-sep"><div class="op-sep-line"></div><div class="op-sep-text">BRAND ADVANTAGES</div><div class="op-sep-line"></div></div>
     <div class="op-sec-head"><div class="op-sec-label">\u54c1\u724c\u4f18\u52bf</div><div class="op-sec-title">${d.advTitle||'\u4e3a\u4ec0\u4e48\u9009\u8fd9\u6b3e'}</div></div>
     <div style="padding:0 48px 36px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      ${(d.advantages||[]).map(a=>`<div style="background:rgba(${cssRgb},0.06);border:1px solid var(--line-bright);border-radius:10px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 0 0 1px rgba(${cssRgb},0.08),inset 0 1px 0 rgba(${cssRgb},0.15);">
-        <span style="font-size:1.2rem;flex-shrink:0">${a.icon}</span>
+      ${(d.advantages||[]).map(a=>{
+        const _s=typeof a==='string'?a:'';
+        const _sp=_s.indexOf(' '); const _bar=_s.indexOf('｜');
+        const _icon=_sp>0?_s.slice(0,_sp):(a.icon||'');
+        const _title=(_sp>0&&_bar>_sp)?_s.slice(_sp+1,_bar):(a.title||'');
+        const _desc=_bar>0?_s.slice(_bar+1):(a.desc||'');
+        return `<div style="background:rgba(${cssRgb},0.06);border:1px solid var(--line-bright);border-radius:10px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 0 0 1px rgba(${cssRgb},0.08),inset 0 1px 0 rgba(${cssRgb},0.15);">
+        <span style="font-size:1.2rem;flex-shrink:0">${_icon}</span>
         <div>
-          <div style="font-family:'Noto Serif SC',serif;font-size:.85rem;font-weight:600;color:${cssRose2};margin-bottom:4px">${a.title}</div>
-          <div style="font-size:11px;color:var(--muted);line-height:1.65">${a.desc}</div>
+          <div style="font-family:'Noto Serif SC',serif;font-size:.85rem;font-weight:600;color:${cssRose2};margin-bottom:4px">${_title}</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.65">${_desc}</div>
         </div>
-      </div>`).join('')}
+      </div>`;}).join('')}
     </div>
 
 
