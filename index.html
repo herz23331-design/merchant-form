@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- external-github product-dashboard build=2026-07-01-0316 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小红书 K播 · 保健食品商品趋势</title>
@@ -49,12 +48,14 @@ body {
 .header h1 { font-size: 42px; line-height:1.1; font-weight: 950; letter-spacing:.04em; color:#fff4d9; text-shadow:0 4px 18px rgba(0,0,0,.30); }
 .cover-subtitle { margin-top:16px; font-size:19px; line-height:1.5; color:rgba(255,247,226,.88); font-weight:750; letter-spacing:.04em; }
 .cover-meta { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; margin-top:26px; color:rgba(255,247,226,.82); font-size:14px; font-weight:700; }
+.cover-daterange { margin-top:10px; font-size:13px; letter-spacing:.04em; color:rgba(255,247,226,.72); font-weight:600; }
 .cover-meta span { display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
 @media (max-width: 900px) {
   .header { padding:30px 18px; min-height:260px; }
   .header h1 { font-size:30px; }
   .cover-subtitle { font-size:15px; }
   .cover-meta { gap:10px 14px; font-size:12px; }
+  .cover-daterange { font-size:11px; }
 }
 
 .kpi-grid {
@@ -126,6 +127,90 @@ body {
   padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px;
 }
 .reset-btn:hover { background: #e5e7eb; }
+
+
+
+
+/* === 顶部 bump 两列 === */
+.bump-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 12px; }
+
+.search-lines-combo { padding: 20px 24px; }
+.search-lines-combo .lx-card-title { font-size: 17px; font-weight: 800; color: #1e293b; margin-bottom: 16px; }
+.search-lines-combo .lx-card-subtitle { display: block; margin-top: 4px; font-size: 12px; font-weight: 500; color: #64748b; }
+.line-chart-block { margin-top: 18px; padding-top: 14px; border-top: 1px dashed #e2e8f0; }
+.line-chart-block:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.line-chart-title { font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 6px; }
+.lc-hint { font-size: 11px; color: #94a3b8; margin-bottom: 8px; }
+.lc-svg .lc-line { transition: opacity 0.18s, stroke-width 0.18s; }
+.lc-svg.lc-dim .lc-line { opacity: 0.15; }
+.lc-svg.lc-dim .lc-dot { opacity: 0.15; }
+.lc-svg.lc-dim .lc-line.lc-active { opacity: 1; stroke-width: 3.6; }
+.lc-svg.lc-dim .lc-dot.lc-active { opacity: 1; }
+.lc-svg.lc-dim .lc-label { opacity: 0.25; }
+.lc-svg.lc-dim .lc-label.lc-active { opacity: 1; }
+.lines-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+.lines-2col .line-chart-block { margin-top: 0; padding-top: 0; border-top: none; }
+.lines-col { display: flex; flex-direction: column; gap: 16px; }
+.lines-col .line-chart-block { background: #fff; padding: 12px 14px; border-radius: 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+@media (max-width: 1100px) { .lines-2col { grid-template-columns: 1fr; } }
+
+.bump-2col .bump-sub { margin: 0; padding: 0; background: transparent; box-shadow: none; }
+.bump-2col .bump-sub .section-header { margin-bottom: 8px; }
+.bump-2col .bump-sub .bump-sub-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f172a; }
+.bump-2col .bump-sub .bump-sub-title small { display: block; margin-top: 4px; font-size: 11px; color: #94a3b8; font-weight: 500; }
+.bump-2col .lxm-grid { gap: 8px; }
+.bump-2col .lxm-col { min-width: 0; }
+.bump-2col .lxm-cell { padding: 5px 6px; font-size: 12px; display: flex; align-items: center; gap: 4px; }
+.bump-2col .lxm-rank { font-size: 10px; padding: 1px 4px; flex-shrink: 0; }
+.bump-2col .lxm-word { font-size: 12px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bump-2col .lxm-arrow { font-size: 10.5px; flex-shrink: 0; }
+.bump-2col .lxm-col-title { font-size: 12px; padding: 6px 4px; }
+.bump-2col .lxm-col { min-width: 78px; }
+@media (max-width: 1100px) { .bump-2col { grid-template-columns: 1fr; } }
+.search-trend-combo { margin-top: 20px; padding: 24px 26px 22px; background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.search-trend-combo .combo-h3 { margin: 0 0 2px; font-size: 18px; font-weight: 900; color: #0f172a; }
+.search-trend-combo .combo-subtitle { margin: 0 0 14px; font-size: 12px; color: #94a3b8; }
+.search-trend-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.search-trend-sub { padding: 10px 4px 6px; }
+.search-trend-sub + .search-trend-sub { border-left: 1px dashed #e2e8f0; padding-left: 22px; }
+.search-trend-sub .sub-h4 { margin: 0 0 8px; font-size: 15px; font-weight: 800; color: #1e293b; }
+.search-trend-sub .sub-h4 small { margin-left: 6px; font-size: 11px; font-weight: 500; color: #94a3b8; }
+@media (max-width: 900px) { .search-trend-2col { grid-template-columns: 1fr; } .search-trend-sub + .search-trend-sub { border-left: none; border-top: 1px dashed #e2e8f0; padding-left: 4px; padding-top: 14px; } }
+
+.search-trend-card { margin-top: 20px; padding: 22px 24px 24px; background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.search-trend-card h3 { margin: 0 0 14px; font-size: 17px; font-weight: 900; color: #0f172a; }
+.search-trend-card h3 small { font-size: 12px; font-weight: 500; color: #94a3b8; margin-left: 6px; }
+.search-trend-wrap { width: 100%; overflow-x: auto; padding: 4px 0 6px; }
+.trend-pill-row { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 14px; padding: 12px 14px; background: #f8fafc; border-radius: 10px; }
+.trend-pill-group { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.trend-pill-title { font-size: 12px; font-weight: 900; letter-spacing: .02em; }
+.trend-pill-up .trend-pill-title { color: #dc2626; }
+.trend-pill-down .trend-pill-title { color: #059669; }
+.trend-pill-item { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: white; border: 1px solid #e2e8f0; border-radius: 999px; font-size: 12px; color: #475569; }
+.trend-pill-item b { color: #0f172a; font-weight: 700; }
+.search-trend-caption { margin-top: 10px; font-size: 11px; color: #94a3b8; line-height: 1.55; }
+@media (max-width: 760px) {
+  .search-trend-card { padding: 16px; }
+  .search-trend-card h3 { font-size: 15px; }
+}
+
+.scene-rank-trend-card { margin-top: 20px; padding: 22px 24px 24px; background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.scene-rank-trend-card h3 { margin: 0 0 14px; font-size: 17px; font-weight: 900; color: #0f172a; }
+.scene-rank-trend-card h3 small { font-size: 12px; font-weight: 500; color: #94a3b8; margin-left: 6px; }
+.scene-trend-wrap { width: 100%; overflow-x: auto; padding: 4px 0 6px; }
+.rank-move-row { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 14px; padding: 12px 14px; background: #f8fafc; border-radius: 10px; }
+.rank-move-group { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rank-move-title { font-size: 12px; font-weight: 900; letter-spacing: .02em; }
+.rank-move-up .rank-move-title { color: #dc2626; }
+.rank-move-down .rank-move-title { color: #059669; }
+.rank-move-item { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: white; border: 1px solid #e2e8f0; border-radius: 999px; font-size: 12px; color: #475569; }
+.rank-move-item b { color: #0f172a; font-weight: 700; }
+.scene-trend-caption { margin-top: 10px; font-size: 11px; color: #94a3b8; line-height: 1.55; }
+@media (max-width: 760px) {
+  .scene-rank-trend-card { padding: 16px; }
+  .scene-rank-trend-card h3 { font-size: 15px; }
+}
+
 .scene-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -139,10 +224,30 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
+  position: relative;
 }
 .scene-card:hover { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .scene-card.selected { border-color: #36a374; background: #f0faf5; }
 .scene-card.active { opacity: 0.4; }
+.scene-archive {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: rgba(31,41,55,.5);
+  transition: all 0.15s;
+  cursor: pointer;
+  z-index: 2;
+}
+.scene-archive:hover {
+  background: rgba(54,163,116,.12);
+  color: #36a374;
+  transform: scale(1.15);
+}
 .scene-icon {
   width: 36px; height: 36px;
   border-radius: 50%; margin: 0 auto 8px;
@@ -292,8 +397,53 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 .ov-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.10); }
+.ov-archive {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 10px;
+  color: rgba(38,50,65,.55);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.15s;
+  background: rgba(255,255,255,.4);
+}
+.ov-archive:hover {
+  color: #263241;
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.archive-cta {
+  margin: 18px 0 22px;
+}
+.archive-cta a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: linear-gradient(105deg, #fff9ec 0%, #fff2d6 55%, #ffe8bc 100%);
+  border: 1px solid rgba(180, 130, 60, .18);
+  border-radius: 14px;
+  text-decoration: none;
+  color: #4a3418;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(180, 130, 60, .06);
+}
+.archive-cta a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(180, 130, 60, .18);
+  border-color: rgba(180, 130, 60, .3);
+}
+.archive-cta-icon { font-size: 32px; line-height: 1; }
+.archive-cta-text { flex: 1; }
+.archive-cta-title { font-size: 16px; font-weight: 800; letter-spacing: 0.3px; }
+.archive-cta-sub { font-size: 12px; color: #7a5a2f; margin-top: 3px; font-weight: 600; }
+.archive-cta-arrow { font-size: 22px; color: #a06b1f; font-weight: 700; }
 .ov-head {
   display: flex; align-items: center; justify-content: center;
   gap: 6px; margin-bottom: 8px;
@@ -710,11 +860,12 @@ body {
     <div class="header-content">
       <div class="cover-eyebrow">小红书 K播保健食品</div>
       <h1>给买手的大健康好货清单</h1>
-      <div class="cover-subtitle">年度热销 × 30天热销 × 7天起量 × 垂类破圈</div>
+      <div class="cover-subtitle">年度热销 × 30天热销 × 潜力飙升 × 垂类破圈</div>
+      <div class="cover-daterange">📅 数据周期 2026.01.01 ~ 2026.06.28（含近30天=2026.05.30~06.28）</div>
       <div class="cover-meta">
         <span>🏆 年度热销 110 品</span>
         <span>🔥 30天热销 140 品</span>
-        <span>📈 7天起量 27 品</span>
+        <span>🚀 潜力飙升 27 品</span>
         <span>👥 10 个垂类赛道</span>
         <span>💚 12 个功效场景</span>
       </div>
@@ -730,72 +881,84 @@ body {
       </div>
       <div class="ov-grid">
         <div class="ov-card" style="background:#fecaca">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑫美容养颜" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">✨</span><span class="ov-name">美容养颜</span></div>
           <div class="ov-desc">抗糖、胶原、提亮紧致等颜值管理型好货</div>
           <div class="ov-ings"><span class="ov-tag">胶原蛋白</span><span class="ov-tag">玻尿酸</span><span class="ov-tag">NMN</span><span class="ov-tag">亚精胺</span><span class="ov-tag">抗糖丸</span><span class="ov-tag">玫瑰露</span></div>
         </div>
         
         <div class="ov-card" style="background:#fed7aa">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-③心脑养护" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🧠</span><span class="ov-name">心脑养护</span></div>
           <div class="ov-desc">鱼油、辅酶Q10、血脂血压与记忆认知养护</div>
           <div class="ov-ings"><span class="ov-tag">鱼油</span><span class="ov-tag">辅酶Q10</span><span class="ov-tag">红曲米</span><span class="ov-tag">深海鱼油</span><span class="ov-tag">缩醛磷脂</span></div>
         </div>
         
         <div class="ov-card" style="background:#dbeafe">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-①维矿补充" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">💊</span><span class="ov-name">维矿补充</span></div>
           <div class="ov-desc">儿童成长营养与成人复合维生素、钙铁锌</div>
           <div class="ov-ings"><span class="ov-tag">复合维生素</span><span class="ov-tag">维生素D</span><span class="ov-tag">钙</span><span class="ov-tag">铁</span><span class="ov-tag">锌</span><span class="ov-tag">VD3K2</span><span class="ov-tag">营养包</span></div>
         </div>
         
         <div class="ov-card" style="background:#ecfccb">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑪消化调理" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🌾</span><span class="ov-name">消化调理</span></div>
           <div class="ov-desc">益生菌、益生元、消化酶等肠胃菌群调理</div>
           <div class="ov-ings"><span class="ov-tag">益生菌</span><span class="ov-tag">益生元</span><span class="ov-tag">消化酶</span><span class="ov-tag">谷氨酰胺</span><span class="ov-tag">山楂</span><span class="ov-tag">鸡内金</span></div>
         </div>
         
         <div class="ov-card" style="background:#fef3c7">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑨增强免疫" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🛡️</span><span class="ov-name">增强免疫</span></div>
           <div class="ov-desc">灵芝、虫草、β葡聚糖等日常防护型补充</div>
           <div class="ov-ings"><span class="ov-tag">β-葡聚糖</span><span class="ov-tag">灵芝</span><span class="ov-tag">虫草</span><span class="ov-tag">黄芪</span><span class="ov-tag">锌</span></div>
         </div>
         
         <div class="ov-card" style="background:#ffe4d4">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑩减肥塑形" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">⚖️</span><span class="ov-name">减肥塑形</span></div>
           <div class="ov-desc">燃脂控体、碳水阻断、食欲管理等体重管理</div>
           <div class="ov-ings"><span class="ov-tag">藤黄果</span><span class="ov-tag">芒果籽</span><span class="ov-tag">黑姜提取物</span><span class="ov-tag">白芸豆</span><span class="ov-tag">左旋肉碱</span></div>
         </div>
         
         <div class="ov-card" style="background:#ccfbf1">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑤清体排毒" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🌿</span><span class="ov-name">清体排毒</span></div>
           <div class="ov-desc">护肝解酒、祛湿排水、清体轻负担诉求</div>
           <div class="ov-ings"><span class="ov-tag">水飞蓟</span><span class="ov-tag">奶蓟草</span><span class="ov-tag">朝鲜蓟</span><span class="ov-tag">姜黄</span><span class="ov-tag">护士茶</span></div>
         </div>
         
         <div class="ov-card" style="background:#fce7f3">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-②女性特护" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">💜</span><span class="ov-name">女性特护</span></div>
           <div class="ov-desc">经期、卵巢、备孕产后、女性私密等专属护理</div>
           <div class="ov-ings"><span class="ov-tag">卵巢保养</span><span class="ov-tag">雌激素</span><span class="ov-tag">手性肌醇</span><span class="ov-tag">备孕铁</span><span class="ov-tag">私密益生菌</span><span class="ov-tag">蔓越莓</span></div>
         </div>
         
         <div class="ov-card" style="background:#e0e7ff">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑦睡眠改善" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🌙</span><span class="ov-name">睡眠改善</span></div>
           <div class="ov-desc">褪黑素、GABA、酸枣仁、镁类助眠场景</div>
           <div class="ov-ings"><span class="ov-tag">褪黑素</span><span class="ov-tag">GABA</span><span class="ov-tag">酸枣仁</span><span class="ov-tag">甘氨酸镁</span><span class="ov-tag">L-茶氨酸</span></div>
         </div>
         
         <div class="ov-card" style="background:#e9d5ff">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-④缓解疲劳" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">⚡</span><span class="ov-name">缓解疲劳</span></div>
           <div class="ov-desc">护眼视疲劳、人参精力、B族活力补给</div>
           <div class="ov-ings"><span class="ov-tag">叶黄素</span><span class="ov-tag">玉米黄质</span><span class="ov-tag">越橘</span><span class="ov-tag">人参</span><span class="ov-tag">西洋参</span><span class="ov-tag">B族</span></div>
         </div>
         
         <div class="ov-card" style="background:#d9f99d">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑧情绪管理" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">💚</span><span class="ov-name">情绪管理</span></div>
           <div class="ov-desc">舒压放松、焦虑情绪、宁心稳定类补充</div>
           <div class="ov-ings"><span class="ov-tag">麦角硫因</span><span class="ov-tag">5-HTP</span><span class="ov-tag">圣约翰草</span><span class="ov-tag">南非醉茄</span></div>
         </div>
         
         <div class="ov-card" style="background:#dcfce7">
+          <a class="ov-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑥运动健康" target="_blank" title="查看该场景商品档案">📖 档案 ↗</a>
           <div class="ov-head"><span class="ov-emoji">🏃</span><span class="ov-name">运动健康</span></div>
           <div class="ov-desc">关节骨骼、氨糖软骨素、运动恢复与训练支持</div>
           <div class="ov-ings"><span class="ov-tag">氨糖</span><span class="ov-tag">软骨素</span><span class="ov-tag">肌酸</span><span class="ov-tag">BCAA</span><span class="ov-tag">MSM</span><span class="ov-tag">蛋白粉</span></div>
@@ -804,10 +967,12 @@ body {
     </div>
     
   
+  <div class="lx-card search-lines-combo"><div class="lx-card-title">📊 灵犀搜索热度趋势 · 近 6 月<span class="lx-card-subtitle">数据来源：小红书灵犀 · 医疗健康类目 · 仅呈现相对趋势 · hover 高亮单条</span></div><div class="lines-2col"><div class="lines-col"><div class="line-chart-block"><div class="line-chart-title">🎯 12 功效场景</div><svg viewBox="0 0 1120 780" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" class="lc-svg" data-prefix="ln_scene_search_lines_v3_json_909445"><line x1="20" y1="744.0" x2="985" y2="744.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="504.0" x2="985" y2="504.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="264.0" x2="985" y2="264.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="24.0" x2="985" y2="24.0" stroke="#eef2f7" stroke-width="1"/><text x="20.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">01月</text><text x="213.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">02月</text><text x="406.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">03月</text><text x="599.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">04月</text><text x="792.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">05月</text><text x="985.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">06月</text><polyline id="ln_scene_search_lines_v3_json_909445_0" points="20.0,138.2 213.0,157.1 406.0,132.7 599.0,140.5 792.0,143.7 985.0,151.2" fill="none" stroke="#EF4444" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="0" class="lc-line"/><circle cx="20.0" cy="138.2" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-01</title></circle><circle cx="213.0" cy="157.1" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-02</title></circle><circle cx="406.0" cy="132.7" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-03</title></circle><circle cx="599.0" cy="140.5" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-04</title></circle><circle cx="792.0" cy="143.7" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-05</title></circle><circle cx="985.0" cy="151.2" r="3" fill="#EF4444" opacity="0.9" class="lc-dot" data-idx="0"><title>心脑养护 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_1" points="20.0,223.4 213.0,255.5 406.0,217.7 599.0,230.8 792.0,233.2 985.0,241.9" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="1" class="lc-line"/><circle cx="20.0" cy="223.4" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-01</title></circle><circle cx="213.0" cy="255.5" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-02</title></circle><circle cx="406.0" cy="217.7" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-03</title></circle><circle cx="599.0" cy="230.8" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-04</title></circle><circle cx="792.0" cy="233.2" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-05</title></circle><circle cx="985.0" cy="241.9" r="3" fill="#F59E0B" opacity="0.9" class="lc-dot" data-idx="1"><title>消化调理 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_2" points="20.0,243.5 213.0,277.7 406.0,238.7 599.0,242.6 792.0,243.0 985.0,250.8" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="2" class="lc-line"/><circle cx="20.0" cy="243.5" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-01</title></circle><circle cx="213.0" cy="277.7" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-02</title></circle><circle cx="406.0" cy="238.7" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-03</title></circle><circle cx="599.0" cy="242.6" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-04</title></circle><circle cx="792.0" cy="243.0" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-05</title></circle><circle cx="985.0" cy="250.8" r="3" fill="#10B981" opacity="0.9" class="lc-dot" data-idx="2"><title>女性特护 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_3" points="20.0,317.2 213.0,330.9 406.0,276.5 599.0,276.9 792.0,284.8 985.0,289.8" fill="none" stroke="#3B82F6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="3" class="lc-line"/><circle cx="20.0" cy="317.2" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-01</title></circle><circle cx="213.0" cy="330.9" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-02</title></circle><circle cx="406.0" cy="276.5" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-03</title></circle><circle cx="599.0" cy="276.9" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-04</title></circle><circle cx="792.0" cy="284.8" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-05</title></circle><circle cx="985.0" cy="289.8" r="3" fill="#3B82F6" opacity="0.9" class="lc-dot" data-idx="3"><title>清体排毒 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_4" points="20.0,293.3 213.0,308.9 406.0,278.2 599.0,293.7 792.0,306.3 985.0,319.0" fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="4" class="lc-line"/><circle cx="20.0" cy="293.3" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-01</title></circle><circle cx="213.0" cy="308.9" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-02</title></circle><circle cx="406.0" cy="278.2" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-03</title></circle><circle cx="599.0" cy="293.7" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-04</title></circle><circle cx="792.0" cy="306.3" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-05</title></circle><circle cx="985.0" cy="319.0" r="3" fill="#8B5CF6" opacity="0.9" class="lc-dot" data-idx="4"><title>缓解疲劳 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_5" points="20.0,341.1 213.0,368.5 406.0,316.4 599.0,326.7 792.0,325.1 985.0,330.7" fill="none" stroke="#EC4899" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="5" class="lc-line"/><circle cx="20.0" cy="341.1" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-01</title></circle><circle cx="213.0" cy="368.5" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-02</title></circle><circle cx="406.0" cy="316.4" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-03</title></circle><circle cx="599.0" cy="326.7" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-04</title></circle><circle cx="792.0" cy="325.1" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-05</title></circle><circle cx="985.0" cy="330.7" r="3" fill="#EC4899" opacity="0.9" class="lc-dot" data-idx="5"><title>睡眠改善 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_6" points="20.0,402.8 213.0,415.1 406.0,378.2 599.0,388.0 792.0,371.2 985.0,387.3" fill="none" stroke="#14B8A6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="6" class="lc-line"/><circle cx="20.0" cy="402.8" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-01</title></circle><circle cx="213.0" cy="415.1" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-02</title></circle><circle cx="406.0" cy="378.2" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-03</title></circle><circle cx="599.0" cy="388.0" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-04</title></circle><circle cx="792.0" cy="371.2" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-05</title></circle><circle cx="985.0" cy="387.3" r="3" fill="#14B8A6" opacity="0.9" class="lc-dot" data-idx="6"><title>运动健康 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_7" points="20.0,430.8 213.0,436.5 406.0,372.2 599.0,412.4 792.0,397.1 985.0,407.0" fill="none" stroke="#F97316" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="7" class="lc-line"/><circle cx="20.0" cy="430.8" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-01</title></circle><circle cx="213.0" cy="436.5" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-02</title></circle><circle cx="406.0" cy="372.2" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-03</title></circle><circle cx="599.0" cy="412.4" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-04</title></circle><circle cx="792.0" cy="397.1" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-05</title></circle><circle cx="985.0" cy="407.0" r="3" fill="#F97316" opacity="0.9" class="lc-dot" data-idx="7"><title>维矿补充 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_8" points="20.0,448.8 213.0,448.0 406.0,394.2 599.0,400.8 792.0,399.3 985.0,412.0" fill="none" stroke="#6366F1" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="8" class="lc-line"/><circle cx="20.0" cy="448.8" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-01</title></circle><circle cx="213.0" cy="448.0" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-02</title></circle><circle cx="406.0" cy="394.2" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-03</title></circle><circle cx="599.0" cy="400.8" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-04</title></circle><circle cx="792.0" cy="399.3" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-05</title></circle><circle cx="985.0" cy="412.0" r="3" fill="#6366F1" opacity="0.9" class="lc-dot" data-idx="8"><title>美容养颜 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_9" points="20.0,455.1 213.0,464.9 406.0,457.2 599.0,472.6 792.0,474.0 985.0,481.0" fill="none" stroke="#84CC16" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="9" class="lc-line"/><circle cx="20.0" cy="455.1" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-01</title></circle><circle cx="213.0" cy="464.9" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-02</title></circle><circle cx="406.0" cy="457.2" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-03</title></circle><circle cx="599.0" cy="472.6" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-04</title></circle><circle cx="792.0" cy="474.0" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-05</title></circle><circle cx="985.0" cy="481.0" r="3" fill="#84CC16" opacity="0.9" class="lc-dot" data-idx="9"><title>增强免疫 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_10" points="20.0,540.6 213.0,576.8 406.0,538.8 599.0,562.4 792.0,553.3 985.0,576.9" fill="none" stroke="#F43F5E" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="10" class="lc-line"/><circle cx="20.0" cy="540.6" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-01</title></circle><circle cx="213.0" cy="576.8" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-02</title></circle><circle cx="406.0" cy="538.8" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-03</title></circle><circle cx="599.0" cy="562.4" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-04</title></circle><circle cx="792.0" cy="553.3" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-05</title></circle><circle cx="985.0" cy="576.9" r="3" fill="#F43F5E" opacity="0.9" class="lc-dot" data-idx="10"><title>情绪管理 · 2026-06</title></circle><polyline id="ln_scene_search_lines_v3_json_909445_11" points="20.0,705.5 213.0,740.1 406.0,659.1 599.0,654.3 792.0,655.7 985.0,668.8" fill="none" stroke="#06B6D4" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="11" class="lc-line"/><circle cx="20.0" cy="705.5" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-01</title></circle><circle cx="213.0" cy="740.1" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-02</title></circle><circle cx="406.0" cy="659.1" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-03</title></circle><circle cx="599.0" cy="654.3" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-04</title></circle><circle cx="792.0" cy="655.7" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-05</title></circle><circle cx="985.0" cy="668.8" r="3" fill="#06B6D4" opacity="0.9" class="lc-dot" data-idx="11"><title>减肥塑形 · 2026-06</title></circle><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_0" data-idx="0" style="cursor:pointer"><rect x="985" y="141.1906703555611" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="151.2" r="3.5" fill="#EF4444"/><text x="997.0" y="155.2" font-size="11" fill="#2d3748" font-weight="600">心脑养护</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_1" data-idx="1" style="cursor:pointer"><rect x="985" y="231.92993767591446" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="241.9" r="3.5" fill="#F59E0B"/><text x="997.0" y="245.9" font-size="11" fill="#2d3748" font-weight="600">消化调理</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_2" data-idx="2" style="cursor:pointer"><rect x="985" y="255.92993767591446" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="265.9" r="3.5" fill="#10B981"/><text x="997.0" y="269.9" font-size="11" fill="#2d3748" font-weight="600">女性特护</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_3" data-idx="3" style="cursor:pointer"><rect x="985" y="279.92993767591446" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="289.9" r="3.5" fill="#3B82F6"/><text x="997.0" y="293.9" font-size="11" fill="#2d3748" font-weight="600">清体排毒</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_4" data-idx="4" style="cursor:pointer"><rect x="985" y="308.9671138006048" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="319.0" r="3.5" fill="#8B5CF6"/><text x="997.0" y="323.0" font-size="11" fill="#2d3748" font-weight="600">缓解疲劳</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_5" data-idx="5" style="cursor:pointer"><rect x="985" y="332.9671138006048" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="343.0" r="3.5" fill="#EC4899"/><text x="997.0" y="347.0" font-size="11" fill="#2d3748" font-weight="600">睡眠改善</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_6" data-idx="6" style="cursor:pointer"><rect x="985" y="377.28675137419333" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="387.3" r="3.5" fill="#14B8A6"/><text x="997.0" y="391.3" font-size="11" fill="#2d3748" font-weight="600">运动健康</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_7" data-idx="7" style="cursor:pointer"><rect x="985" y="401.28675137419333" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="411.3" r="3.5" fill="#F97316"/><text x="997.0" y="415.3" font-size="11" fill="#2d3748" font-weight="600">维矿补充</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_8" data-idx="8" style="cursor:pointer"><rect x="985" y="425.28675137419333" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="435.3" r="3.5" fill="#6366F1"/><text x="997.0" y="439.3" font-size="11" fill="#2d3748" font-weight="600">美容养颜</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_9" data-idx="9" style="cursor:pointer"><rect x="985" y="470.9747504760647" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="481.0" r="3.5" fill="#84CC16"/><text x="997.0" y="485.0" font-size="11" fill="#2d3748" font-weight="600">增强免疫</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_10" data-idx="10" style="cursor:pointer"><rect x="985" y="566.8507710750328" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="576.9" r="3.5" fill="#F43F5E"/><text x="997.0" y="580.9" font-size="11" fill="#2d3748" font-weight="600">情绪管理</text></g><g class="lc-label" data-target="ln_scene_search_lines_v3_json_909445_11" data-idx="11" style="cursor:pointer"><rect x="985" y="658.8121162668455" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="668.8" r="3.5" fill="#06B6D4"/><text x="997.0" y="672.8" font-size="11" fill="#2d3748" font-weight="600">减肥塑形</text></g></svg></div></div><div class="lines-col"><div class="line-chart-block"><div class="line-chart-title">🔥 Top 20 成分词</div><svg viewBox="0 0 1120 780" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" class="lc-svg" data-prefix="ln_ingredient_search_lines_v3_json_553184"><line x1="20" y1="744.0" x2="985" y2="744.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="600.0" x2="985" y2="600.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="456.0" x2="985" y2="456.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="312.0" x2="985" y2="312.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="168.0" x2="985" y2="168.0" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="24.0" x2="985" y2="24.0" stroke="#eef2f7" stroke-width="1"/><text x="20.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">01月</text><text x="213.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">02月</text><text x="406.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">03月</text><text x="599.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">04月</text><text x="792.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">05月</text><text x="985.0" y="766" text-anchor="middle" font-size="12" fill="#4a5568" font-weight="600">06月</text><polyline id="ln_ingredient_search_lines_v3_json_553184_0" points="20.0,175.1 213.0,177.8 406.0,141.2 599.0,171.2 792.0,167.2 985.0,168.9" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="0" class="lc-line"/><circle cx="20.0" cy="175.1" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-01</title></circle><circle cx="213.0" cy="177.8" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-02</title></circle><circle cx="406.0" cy="141.2" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-03</title></circle><circle cx="599.0" cy="171.2" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-04</title></circle><circle cx="792.0" cy="167.2" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-05</title></circle><circle cx="985.0" cy="168.9" r="3" fill="#DC2626" opacity="0.9" class="lc-dot" data-idx="0"><title>鱼油 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_1" points="20.0,165.2 213.0,173.7 406.0,150.6 599.0,170.2 792.0,168.6 985.0,171.2" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="1" class="lc-line"/><circle cx="20.0" cy="165.2" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-01</title></circle><circle cx="213.0" cy="173.7" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-02</title></circle><circle cx="406.0" cy="150.6" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-03</title></circle><circle cx="599.0" cy="170.2" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-04</title></circle><circle cx="792.0" cy="168.6" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-05</title></circle><circle cx="985.0" cy="171.2" r="3" fill="#EA580C" opacity="0.9" class="lc-dot" data-idx="1"><title>益生菌 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_2" points="20.0,199.6 213.0,214.2 406.0,195.2 599.0,213.5 792.0,217.6 985.0,218.5" fill="none" stroke="#D97706" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="2" class="lc-line"/><circle cx="20.0" cy="199.6" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-01</title></circle><circle cx="213.0" cy="214.2" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-02</title></circle><circle cx="406.0" cy="195.2" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-03</title></circle><circle cx="599.0" cy="213.5" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-04</title></circle><circle cx="792.0" cy="217.6" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-05</title></circle><circle cx="985.0" cy="218.5" r="3" fill="#D97706" opacity="0.9" class="lc-dot" data-idx="2"><title>玻尿酸 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_3" points="20.0,216.4 213.0,228.2 406.0,207.6 599.0,226.5 792.0,228.8 985.0,234.0" fill="none" stroke="#65A30D" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="3" class="lc-line"/><circle cx="20.0" cy="216.4" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-01</title></circle><circle cx="213.0" cy="228.2" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-02</title></circle><circle cx="406.0" cy="207.6" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-03</title></circle><circle cx="599.0" cy="226.5" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-04</title></circle><circle cx="792.0" cy="228.8" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-05</title></circle><circle cx="985.0" cy="234.0" r="3" fill="#65A30D" opacity="0.9" class="lc-dot" data-idx="3"><title>胶原蛋白 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_4" points="20.0,254.2 213.0,266.3 406.0,228.3 599.0,247.5 792.0,246.4 985.0,246.8" fill="none" stroke="#059669" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="4" class="lc-line"/><circle cx="20.0" cy="254.2" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-01</title></circle><circle cx="213.0" cy="266.3" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-02</title></circle><circle cx="406.0" cy="228.3" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-03</title></circle><circle cx="599.0" cy="247.5" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-04</title></circle><circle cx="792.0" cy="246.4" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-05</title></circle><circle cx="985.0" cy="246.8" r="3" fill="#059669" opacity="0.9" class="lc-dot" data-idx="4"><title>褪黑素 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_5" points="20.0,251.7 213.0,264.4 406.0,230.6 599.0,255.0 792.0,259.2 985.0,265.5" fill="none" stroke="#0891B2" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="5" class="lc-line"/><circle cx="20.0" cy="251.7" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-01</title></circle><circle cx="213.0" cy="264.4" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-02</title></circle><circle cx="406.0" cy="230.6" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-03</title></circle><circle cx="599.0" cy="255.0" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-04</title></circle><circle cx="792.0" cy="259.2" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-05</title></circle><circle cx="985.0" cy="265.5" r="3" fill="#0891B2" opacity="0.9" class="lc-dot" data-idx="5"><title>姜黄 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_6" points="20.0,258.7 213.0,271.4 406.0,253.6 599.0,268.9 792.0,274.8 985.0,275.4" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="6" class="lc-line"/><circle cx="20.0" cy="258.7" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-01</title></circle><circle cx="213.0" cy="271.4" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-02</title></circle><circle cx="406.0" cy="253.6" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-03</title></circle><circle cx="599.0" cy="268.9" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-04</title></circle><circle cx="792.0" cy="274.8" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-05</title></circle><circle cx="985.0" cy="275.4" r="3" fill="#0284C7" opacity="0.9" class="lc-dot" data-idx="6"><title>蔓越莓 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_7" points="20.0,306.9 213.0,317.4 406.0,268.8 599.0,282.9 792.0,271.1 985.0,281.1" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="7" class="lc-line"/><circle cx="20.0" cy="306.9" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-01</title></circle><circle cx="213.0" cy="317.4" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-02</title></circle><circle cx="406.0" cy="268.8" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-03</title></circle><circle cx="599.0" cy="282.9" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-04</title></circle><circle cx="792.0" cy="271.1" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-05</title></circle><circle cx="985.0" cy="281.1" r="3" fill="#2563EB" opacity="0.9" class="lc-dot" data-idx="7"><title>肌酸 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_8" points="20.0,282.1 213.0,288.6 406.0,248.1 599.0,286.3 792.0,286.7 985.0,291.9" fill="none" stroke="#4F46E5" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="8" class="lc-line"/><circle cx="20.0" cy="282.1" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-01</title></circle><circle cx="213.0" cy="288.6" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-02</title></circle><circle cx="406.0" cy="248.1" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-03</title></circle><circle cx="599.0" cy="286.3" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-04</title></circle><circle cx="792.0" cy="286.7" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-05</title></circle><circle cx="985.0" cy="291.9" r="3" fill="#4F46E5" opacity="0.9" class="lc-dot" data-idx="8"><title>叶黄素 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_9" points="20.0,323.9 213.0,323.3 406.0,299.2 599.0,321.4 792.0,316.1 985.0,315.6" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="9" class="lc-line"/><circle cx="20.0" cy="323.9" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-01</title></circle><circle cx="213.0" cy="323.3" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-02</title></circle><circle cx="406.0" cy="299.2" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-03</title></circle><circle cx="599.0" cy="321.4" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-04</title></circle><circle cx="792.0" cy="316.1" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-05</title></circle><circle cx="985.0" cy="315.6" r="3" fill="#7C3AED" opacity="0.9" class="lc-dot" data-idx="9"><title>氨糖 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_10" points="20.0,347.5 213.0,368.3 406.0,338.2 599.0,366.1 792.0,354.6 985.0,369.0" fill="none" stroke="#9333EA" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="10" class="lc-line"/><circle cx="20.0" cy="347.5" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-01</title></circle><circle cx="213.0" cy="368.3" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-02</title></circle><circle cx="406.0" cy="338.2" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-03</title></circle><circle cx="599.0" cy="366.1" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-04</title></circle><circle cx="792.0" cy="354.6" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-05</title></circle><circle cx="985.0" cy="369.0" r="3" fill="#9333EA" opacity="0.9" class="lc-dot" data-idx="10"><title>麦角硫因 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_11" points="20.0,448.7 213.0,469.4 406.0,445.2 599.0,448.1 792.0,419.8 985.0,415.3" fill="none" stroke="#C026D3" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="11" class="lc-line"/><circle cx="20.0" cy="448.7" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-01</title></circle><circle cx="213.0" cy="469.4" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-02</title></circle><circle cx="406.0" cy="445.2" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-03</title></circle><circle cx="599.0" cy="448.1" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-04</title></circle><circle cx="792.0" cy="419.8" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-05</title></circle><circle cx="985.0" cy="415.3" r="3" fill="#C026D3" opacity="0.9" class="lc-dot" data-idx="11"><title>NAD · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_12" points="20.0,445.2 213.0,451.8 406.0,410.5 599.0,435.3 792.0,434.7 985.0,440.9" fill="none" stroke="#DB2777" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="12" class="lc-line"/><circle cx="20.0" cy="445.2" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-01</title></circle><circle cx="213.0" cy="451.8" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-02</title></circle><circle cx="406.0" cy="410.5" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-03</title></circle><circle cx="599.0" cy="435.3" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-04</title></circle><circle cx="792.0" cy="434.7" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-05</title></circle><circle cx="985.0" cy="440.9" r="3" fill="#DB2777" opacity="0.9" class="lc-dot" data-idx="12"><title>辅酶Q10 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_13" points="20.0,482.0 213.0,488.7 406.0,465.2 599.0,484.7 792.0,489.5 985.0,473.1" fill="none" stroke="#E11D48" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="13" class="lc-line"/><circle cx="20.0" cy="482.0" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-01</title></circle><circle cx="213.0" cy="488.7" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-02</title></circle><circle cx="406.0" cy="465.2" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-03</title></circle><circle cx="599.0" cy="484.7" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-04</title></circle><circle cx="792.0" cy="489.5" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-05</title></circle><circle cx="985.0" cy="473.1" r="3" fill="#E11D48" opacity="0.9" class="lc-dot" data-idx="13"><title>螺旋藻 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_14" points="20.0,504.5 213.0,505.3 406.0,485.6 599.0,506.5 792.0,508.1 985.0,521.1" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="14" class="lc-line"/><circle cx="20.0" cy="504.5" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-01</title></circle><circle cx="213.0" cy="505.3" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-02</title></circle><circle cx="406.0" cy="485.6" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-03</title></circle><circle cx="599.0" cy="506.5" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-04</title></circle><circle cx="792.0" cy="508.1" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-05</title></circle><circle cx="985.0" cy="521.1" r="3" fill="#B91C1C" opacity="0.9" class="lc-dot" data-idx="14"><title>白藜芦醇 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_15" points="20.0,507.8 213.0,516.9 406.0,498.2 599.0,523.7 792.0,523.7 985.0,526.4" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="15" class="lc-line"/><circle cx="20.0" cy="507.8" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-01</title></circle><circle cx="213.0" cy="516.9" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-02</title></circle><circle cx="406.0" cy="498.2" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-03</title></circle><circle cx="599.0" cy="523.7" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-04</title></circle><circle cx="792.0" cy="523.7" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-05</title></circle><circle cx="985.0" cy="526.4" r="3" fill="#B45309" opacity="0.9" class="lc-dot" data-idx="15"><title>NMN · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_16" points="20.0,515.7 213.0,508.8 406.0,473.7 599.0,539.0 792.0,522.3 985.0,535.6" fill="none" stroke="#4D7C0F" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="16" class="lc-line"/><circle cx="20.0" cy="515.7" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-01</title></circle><circle cx="213.0" cy="508.8" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-02</title></circle><circle cx="406.0" cy="473.7" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-03</title></circle><circle cx="599.0" cy="539.0" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-04</title></circle><circle cx="792.0" cy="522.3" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-05</title></circle><circle cx="985.0" cy="535.6" r="3" fill="#4D7C0F" opacity="0.9" class="lc-dot" data-idx="16"><title>亚精胺 · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_17" points="20.0,550.4 213.0,565.0 406.0,542.7 599.0,563.7 792.0,567.1 985.0,560.7" fill="none" stroke="#047857" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="17" class="lc-line"/><circle cx="20.0" cy="550.4" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-01</title></circle><circle cx="213.0" cy="565.0" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-02</title></circle><circle cx="406.0" cy="542.7" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-03</title></circle><circle cx="599.0" cy="563.7" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-04</title></circle><circle cx="792.0" cy="567.1" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-05</title></circle><circle cx="985.0" cy="560.7" r="3" fill="#047857" opacity="0.9" class="lc-dot" data-idx="17"><title>PQQ · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_18" points="20.0,605.2 213.0,614.1 406.0,566.4 599.0,576.0 792.0,585.4 985.0,564.6" fill="none" stroke="#0E7490" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="18" class="lc-line"/><circle cx="20.0" cy="605.2" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-01</title></circle><circle cx="213.0" cy="614.1" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-02</title></circle><circle cx="406.0" cy="566.4" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-03</title></circle><circle cx="599.0" cy="576.0" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-04</title></circle><circle cx="792.0" cy="585.4" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-05</title></circle><circle cx="985.0" cy="564.6" r="3" fill="#0E7490" opacity="0.9" class="lc-dot" data-idx="18"><title>GABA · 2026-06</title></circle><polyline id="ln_ingredient_search_lines_v3_json_553184_19" points="20.0,581.6 213.0,593.5 406.0,563.5 599.0,588.5 792.0,582.8 985.0,588.6" fill="none" stroke="#1D4ED8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" data-idx="19" class="lc-line"/><circle cx="20.0" cy="581.6" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-01</title></circle><circle cx="213.0" cy="593.5" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-02</title></circle><circle cx="406.0" cy="563.5" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-03</title></circle><circle cx="599.0" cy="588.5" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-04</title></circle><circle cx="792.0" cy="582.8" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-05</title></circle><circle cx="985.0" cy="588.6" r="3" fill="#1D4ED8" opacity="0.9" class="lc-dot" data-idx="19"><title>β-葡聚糖 · 2026-06</title></circle><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_0" data-idx="0" style="cursor:pointer"><rect x="985" y="158.93407291102744" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="168.9" r="3.5" fill="#DC2626"/><text x="997.0" y="172.9" font-size="11" fill="#2d3748" font-weight="600">鱼油</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_1" data-idx="1" style="cursor:pointer"><rect x="985" y="182.93407291102744" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="192.9" r="3.5" fill="#EA580C"/><text x="997.0" y="196.9" font-size="11" fill="#2d3748" font-weight="600">益生菌</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_2" data-idx="2" style="cursor:pointer"><rect x="985" y="208.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="218.5" r="3.5" fill="#D97706"/><text x="997.0" y="222.5" font-size="11" fill="#2d3748" font-weight="600">玻尿酸</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_3" data-idx="3" style="cursor:pointer"><rect x="985" y="232.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="242.5" r="3.5" fill="#65A30D"/><text x="997.0" y="246.5" font-size="11" fill="#2d3748" font-weight="600">胶原蛋白</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_4" data-idx="4" style="cursor:pointer"><rect x="985" y="256.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="266.5" r="3.5" fill="#059669"/><text x="997.0" y="270.5" font-size="11" fill="#2d3748" font-weight="600">褪黑素</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_5" data-idx="5" style="cursor:pointer"><rect x="985" y="280.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="290.5" r="3.5" fill="#0891B2"/><text x="997.0" y="294.5" font-size="11" fill="#2d3748" font-weight="600">姜黄</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_6" data-idx="6" style="cursor:pointer"><rect x="985" y="304.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="314.5" r="3.5" fill="#0284C7"/><text x="997.0" y="318.5" font-size="11" fill="#2d3748" font-weight="600">蔓越莓</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_7" data-idx="7" style="cursor:pointer"><rect x="985" y="328.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="338.5" r="3.5" fill="#2563EB"/><text x="997.0" y="342.5" font-size="11" fill="#2d3748" font-weight="600">肌酸</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_8" data-idx="8" style="cursor:pointer"><rect x="985" y="352.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="362.5" r="3.5" fill="#4F46E5"/><text x="997.0" y="366.5" font-size="11" fill="#2d3748" font-weight="600">叶黄素</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_9" data-idx="9" style="cursor:pointer"><rect x="985" y="376.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="386.5" r="3.5" fill="#7C3AED"/><text x="997.0" y="390.5" font-size="11" fill="#2d3748" font-weight="600">氨糖</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_10" data-idx="10" style="cursor:pointer"><rect x="985" y="400.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="410.5" r="3.5" fill="#9333EA"/><text x="997.0" y="414.5" font-size="11" fill="#2d3748" font-weight="600">麦角硫因</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_11" data-idx="11" style="cursor:pointer"><rect x="985" y="424.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="434.5" r="3.5" fill="#C026D3"/><text x="997.0" y="438.5" font-size="11" fill="#2d3748" font-weight="600">NAD</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_12" data-idx="12" style="cursor:pointer"><rect x="985" y="448.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="458.5" r="3.5" fill="#DB2777"/><text x="997.0" y="462.5" font-size="11" fill="#2d3748" font-weight="600">辅酶Q10</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_13" data-idx="13" style="cursor:pointer"><rect x="985" y="472.5151337880543" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="482.5" r="3.5" fill="#E11D48"/><text x="997.0" y="486.5" font-size="11" fill="#2d3748" font-weight="600">螺旋藻</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_14" data-idx="14" style="cursor:pointer"><rect x="985" y="511.10804227008407" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="521.1" r="3.5" fill="#B91C1C"/><text x="997.0" y="525.1" font-size="11" fill="#2d3748" font-weight="600">白藜芦醇</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_15" data-idx="15" style="cursor:pointer"><rect x="985" y="535.1080422700841" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="545.1" r="3.5" fill="#B45309"/><text x="997.0" y="549.1" font-size="11" fill="#2d3748" font-weight="600">NMN</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_16" data-idx="16" style="cursor:pointer"><rect x="985" y="559.1080422700841" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="569.1" r="3.5" fill="#4D7C0F"/><text x="997.0" y="573.1" font-size="11" fill="#2d3748" font-weight="600">亚精胺</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_17" data-idx="17" style="cursor:pointer"><rect x="985" y="583.1080422700841" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="593.1" r="3.5" fill="#047857"/><text x="997.0" y="597.1" font-size="11" fill="#2d3748" font-weight="600">PQQ</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_18" data-idx="18" style="cursor:pointer"><rect x="985" y="607.1080422700841" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="617.1" r="3.5" fill="#0E7490"/><text x="997.0" y="621.1" font-size="11" fill="#2d3748" font-weight="600">GABA</text></g><g class="lc-label" data-target="ln_ingredient_search_lines_v3_json_553184_19" data-idx="19" style="cursor:pointer"><rect x="985" y="631.1080422700841" width="130" height="20" fill="transparent"/><circle cx="989.0" cy="641.1" r="3.5" fill="#1D4ED8"/><text x="997.0" y="645.1" font-size="11" fill="#2d3748" font-weight="600">β-葡聚糖</text></g></svg></div></div></div></div>
+  
   
     <div class="scene-section lxm-section">
       <div class="section-header">
-        <h3>🎯 12 功效场景月度搜索排名 <small>(灵犀 · 保健食品行业 · 近 6 个月 · 共 119 个打标关键词聚合 · ▲ 上升 ▼ 下降)</small></h3>
+        <h3>🎯 12 功效场景月度搜索排名 <small>(灵犀 · 保健食品行业 · 近 6 个月 · 共 123 个打标关键词聚合 · ▲ 上升 ▼ 下降)</small></h3>
       </div>
       <div class="lxm-grid">
         <div class="lxm-col">
@@ -815,62 +980,62 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">07</span>
+              <span class="lxm-rank">03</span>
               <span class="lxm-word">💜 女性特护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">08</span>
-              <span class="lxm-word">🛡️ 增强免疫</span>
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">09</span>
-              <span class="lxm-word">💊 维矿补充</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">10</span>
+              <span class="lxm-rank">05</span>
               <span class="lxm-word">🌿 清体排毒</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
+              <span class="lxm-rank">06</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">07</span>
               <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">08</span>
+              <span class="lxm-word">💊 维矿补充</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">09</span>
+              <span class="lxm-word">✨ 美容养颜</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">10</span>
+              <span class="lxm-word">🛡️ 增强免疫</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">11</span>
+              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div>
@@ -879,62 +1044,62 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">03</span>
+              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">05</span>
+              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">07</span>
-              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
               <span class="lxm-word">💊 维矿补充</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
+              <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">🛡️ 增强免疫</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
+              <span class="lxm-word">✨ 美容养颜</span>
+              <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
-              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-word">🛡️ 增强免疫</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">11</span>
-              <span class="lxm-word">🏃 运动健康</span>
+              <span class="lxm-word">💚 情绪管理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div>
@@ -943,62 +1108,62 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-down">▼2</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">07</span>
+              <span class="lxm-rank">03</span>
               <span class="lxm-word">💜 女性特护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">08</span>
-              <span class="lxm-word">💊 维矿补充</span>
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">05</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">06</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">07</span>
+              <span class="lxm-word">💊 维矿补充</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">08</span>
+              <span class="lxm-word">🏃 运动健康</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">🛡️ 增强免疫</span>
+              <span class="lxm-word">✨ 美容养颜</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
-              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-word">🛡️ 增强免疫</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">11</span>
-              <span class="lxm-word">🏃 运动健康</span>
+              <span class="lxm-word">💚 情绪管理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div>
@@ -1007,62 +1172,62 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">07</span>
+              <span class="lxm-rank">03</span>
               <span class="lxm-word">💜 女性特护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">08</span>
-              <span class="lxm-word">💊 维矿补充</span>
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">🌿 清体排毒</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">09</span>
-              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-rank">05</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">06</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">07</span>
+              <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-up">▲1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">08</span>
+              <span class="lxm-word">✨ 美容养颜</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">09</span>
+              <span class="lxm-word">💊 维矿补充</span>
+              <span class="lxm-arrow lxm-down">▼2</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
               <span class="lxm-word">🛡️ 增强免疫</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
+              <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">11</span>
-              <span class="lxm-word">🏃 运动健康</span>
+              <span class="lxm-word">💚 情绪管理</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div>
@@ -1071,62 +1236,62 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">03</span>
+              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">05</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">07</span>
-              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
               <span class="lxm-word">💊 维矿补充</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">09</span>
-              <span class="lxm-word">🌿 清体排毒</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">10</span>
-              <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
-              <span class="lxm-word">🛡️ 增强免疫</span>
+              <span class="lxm-rank">09</span>
+              <span class="lxm-word">✨ 美容养颜</span>
               <span class="lxm-arrow lxm-down">▼1</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">10</span>
+              <span class="lxm-word">🛡️ 增强免疫</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">11</span>
+              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div>
@@ -1135,37 +1300,37 @@ body {
           
             <div class="lxm-cell">
               <span class="lxm-rank">01</span>
-              <span class="lxm-word">⚖️ 减肥塑形</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">02</span>
-              <span class="lxm-word">🌙 睡眠改善</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">03</span>
-              <span class="lxm-word">✨ 美容养颜</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">04</span>
-              <span class="lxm-word">🌾 消化调理</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">05</span>
               <span class="lxm-word">🧠 心脑养护</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">02</span>
+              <span class="lxm-word">🌾 消化调理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">03</span>
+              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">04</span>
+              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">05</span>
+              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">06</span>
-              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-word">🌙 睡眠改善</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">07</span>
-              <span class="lxm-word">💜 女性特护</span>
+              <span class="lxm-word">🏃 运动健康</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
@@ -1175,22 +1340,22 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">🌿 清体排毒</span>
+              <span class="lxm-word">✨ 美容养颜</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
-              <span class="lxm-word">🏃 运动健康</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
               <span class="lxm-word">🛡️ 增强免疫</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
+              <span class="lxm-rank">11</span>
+              <span class="lxm-word">💚 情绪管理</span>
+              <span class="lxm-arrow lxm-flat">—</span>
+            </div>
+            <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">⚡ 缓解疲劳</span>
+              <span class="lxm-word">⚖️ 减肥塑形</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
         </div></div>
@@ -1243,42 +1408,42 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
-              <span class="lxm-word">💤 叶黄素</span>
+              <span class="lxm-word">⚪ 人参</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">🏃 肌酸</span>
+              <span class="lxm-word">💤 叶黄素</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
-              <span class="lxm-word">🏃 氨糖</span>
+              <span class="lxm-word">🏃 肌酸</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">11</span>
-              <span class="lxm-word">✨ 麦角硫因</span>
+              <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
+              <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">✨ NAD</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
+              <span class="lxm-word">⚪ 虫草</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
@@ -1347,42 +1512,42 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
-              <span class="lxm-word">💤 叶黄素</span>
+              <span class="lxm-word">⚪ 人参</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">🏃 肌酸</span>
+              <span class="lxm-word">💤 叶黄素</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
-              <span class="lxm-word">🏃 氨糖</span>
+              <span class="lxm-word">🏃 肌酸</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">11</span>
-              <span class="lxm-word">✨ 麦角硫因</span>
+              <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">12</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
+              <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">✨ NAD</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
+              <span class="lxm-word">⚪ 虫草</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
@@ -1447,7 +1612,7 @@ body {
             <div class="lxm-cell">
               <span class="lxm-rank">07</span>
               <span class="lxm-word">💤 叶黄素</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
+              <span class="lxm-arrow lxm-up">▲2</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
@@ -1456,33 +1621,33 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
+              <span class="lxm-word">⚪ 人参</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">10</span>
               <span class="lxm-word">🏃 肌酸</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">10</span>
+              <span class="lxm-rank">11</span>
               <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
+              <span class="lxm-rank">12</span>
               <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">12</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">✨ NAD</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
@@ -1491,13 +1656,13 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">16</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
+              <span class="lxm-word">✨ NMN</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">17</span>
-              <span class="lxm-word">✨ NMN</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-word">⚪ 虫草</span>
+              <span class="lxm-arrow lxm-down">▼2</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">18</span>
@@ -1555,48 +1720,48 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
-              <span class="lxm-word">🏃 肌酸</span>
+              <span class="lxm-word">⚪ 人参</span>
               <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
-              <span class="lxm-word">💤 叶黄素</span>
-              <span class="lxm-arrow lxm-down">▼2</span>
+              <span class="lxm-word">🏃 肌酸</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
+              <span class="lxm-word">💤 叶黄素</span>
+              <span class="lxm-arrow lxm-down">▼3</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">11</span>
               <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
+              <span class="lxm-rank">12</span>
               <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">12</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">✨ NAD</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
+              <span class="lxm-word">⚪ 虫草</span>
+              <span class="lxm-arrow lxm-up">▲2</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">16</span>
               <span class="lxm-word">✨ NMN</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
+              <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">17</span>
@@ -1655,7 +1820,7 @@ body {
             <div class="lxm-cell">
               <span class="lxm-rank">07</span>
               <span class="lxm-word">🏃 肌酸</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
+              <span class="lxm-arrow lxm-up">▲2</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">08</span>
@@ -1664,37 +1829,37 @@ body {
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
+              <span class="lxm-word">⚪ 人参</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">10</span>
               <span class="lxm-word">💤 叶黄素</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">10</span>
+              <span class="lxm-rank">11</span>
               <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
+              <span class="lxm-rank">12</span>
               <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">12</span>
-              <span class="lxm-word">✨ NAD</span>
-              <span class="lxm-arrow lxm-up">▲1</span>
-            </div>
-            <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
-              <span class="lxm-arrow lxm-down">▼1</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
+              <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
+              <span class="lxm-word">⚪ 虫草</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
@@ -1769,36 +1934,36 @@ body {
             <div class="lxm-cell">
               <span class="lxm-rank">09</span>
               <span class="lxm-word">💤 叶黄素</span>
-              <span class="lxm-arrow lxm-flat">—</span>
+              <span class="lxm-arrow lxm-up">▲1</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">10</span>
+              <span class="lxm-word">⚪ 人参</span>
+              <span class="lxm-arrow lxm-down">▼1</span>
+            </div>
+            <div class="lxm-cell">
+              <span class="lxm-rank">11</span>
               <span class="lxm-word">🏃 氨糖</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">11</span>
+              <span class="lxm-rank">12</span>
               <span class="lxm-word">✨ 麦角硫因</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
-              <span class="lxm-rank">12</span>
-              <span class="lxm-word">✨ NAD</span>
-              <span class="lxm-arrow lxm-flat">—</span>
-            </div>
-            <div class="lxm-cell">
               <span class="lxm-rank">13</span>
-              <span class="lxm-word">❤️ 辅酶Q10</span>
+              <span class="lxm-word">⚪ 水飞蓟</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">14</span>
-              <span class="lxm-word">💊 螺旋藻</span>
+              <span class="lxm-word">❤️ 辅酶Q10</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
               <span class="lxm-rank">15</span>
-              <span class="lxm-word">✨ 白藜芦醇</span>
+              <span class="lxm-word">⚪ 虫草</span>
               <span class="lxm-arrow lxm-flat">—</span>
             </div>
             <div class="lxm-cell">
@@ -1830,12 +1995,24 @@ body {
     </div>
     
   
+  <div class="archive-cta">
+    <a href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html" target="_blank">
+      <span class="archive-cta-icon">📖</span>
+      <div class="archive-cta-text">
+        <div class="archive-cta-title">商品精选档案 · 187 款</div>
+        <div class="archive-cta-sub">12 个功效场景 · 每款独立详情页 · 点击浏览完整档案</div>
+      </div>
+      <span class="archive-cta-arrow">→</span>
+    </a>
+  </div>
+  
   <div class="tabs">
     <button class="tab-btn active" data-tab="ytd" onclick="switchTab('ytd')">💎 年度热销榜 (110)</button>
     <button class="tab-btn" data-tab="bigsale" onclick="switchTab('bigsale')">🔥 30天热销货盘 (140)</button>
-    <button class="tab-btn" data-tab="potential" onclick="switchTab('potential')">📈 7天热销榜 (27)</button>
+    <button class="tab-btn" data-tab="potential" onclick="switchTab('potential')">🚀 潜力飙升榜 (27)</button>
     <button class="tab-btn" data-tab="buyer-group" onclick="switchTab('buyer-group')">👥 垂类买手破圈榜</button>
   </div>
+  
   
   <div class="tab-panel active" id="tab-ytd">
     
@@ -1847,6 +2024,7 @@ body {
       <div class="scene-grid">
         <div class="scene-card" 
              data-scene="美容养颜" onclick="filterYtdByScene('美容养颜')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑫美容养颜" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#ff7875">✨</div>
           <div class="scene-name">美容养颜</div>
           <div class="scene-count">31 品</div>
@@ -1854,6 +2032,7 @@ body {
         
         <div class="scene-card" 
              data-scene="增强免疫" onclick="filterYtdByScene('增强免疫')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑨增强免疫" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#faad14">🛡️</div>
           <div class="scene-name">增强免疫</div>
           <div class="scene-count">8 品</div>
@@ -1861,6 +2040,7 @@ body {
         
         <div class="scene-card" 
              data-scene="消化调理" onclick="filterYtdByScene('消化调理')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑪消化调理" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#a0d911">🌾</div>
           <div class="scene-name">消化调理</div>
           <div class="scene-count">13 品</div>
@@ -1868,6 +2048,7 @@ body {
         
         <div class="scene-card" 
              data-scene="心脑养护" onclick="filterYtdByScene('心脑养护')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-③心脑养护" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#fa8c16">🧠</div>
           <div class="scene-name">心脑养护</div>
           <div class="scene-count">14 品</div>
@@ -1875,6 +2056,7 @@ body {
         
         <div class="scene-card" 
              data-scene="维矿补充" onclick="filterYtdByScene('维矿补充')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-①维矿补充" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#1890ff">💊</div>
           <div class="scene-name">维矿补充</div>
           <div class="scene-count">13 品</div>
@@ -1882,6 +2064,7 @@ body {
         
         <div class="scene-card" 
              data-scene="减肥塑形" onclick="filterYtdByScene('减肥塑形')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑩减肥塑形" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#ff9a3c">⚖️</div>
           <div class="scene-name">减肥塑形</div>
           <div class="scene-count">7 品</div>
@@ -1889,6 +2072,7 @@ body {
         
         <div class="scene-card" 
              data-scene="清体排毒" onclick="filterYtdByScene('清体排毒')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑤清体排毒" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#13c2c2">🌿</div>
           <div class="scene-name">清体排毒</div>
           <div class="scene-count">6 品</div>
@@ -1896,6 +2080,7 @@ body {
         
         <div class="scene-card" 
              data-scene="女性特护" onclick="filterYtdByScene('女性特护')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-②女性特护" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#eb2f96">💜</div>
           <div class="scene-name">女性特护</div>
           <div class="scene-count">4 品</div>
@@ -1903,6 +2088,7 @@ body {
         
         <div class="scene-card" 
              data-scene="情绪管理" onclick="filterYtdByScene('情绪管理')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑧情绪管理" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#73d13d">💚</div>
           <div class="scene-name">情绪管理</div>
           <div class="scene-count">1 品</div>
@@ -1910,6 +2096,7 @@ body {
         
         <div class="scene-card" 
              data-scene="缓解疲劳" onclick="filterYtdByScene('缓解疲劳')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-④缓解疲劳" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#722ed1">⚡</div>
           <div class="scene-name">缓解疲劳</div>
           <div class="scene-count">3 品</div>
@@ -1917,6 +2104,7 @@ body {
         
         <div class="scene-card" 
              data-scene="睡眠改善" onclick="filterYtdByScene('睡眠改善')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑦睡眠改善" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#2f54eb">🌙</div>
           <div class="scene-name">睡眠改善</div>
           <div class="scene-count">5 品</div>
@@ -1924,6 +2112,7 @@ body {
         
         <div class="scene-card" 
              data-scene="运动健康" onclick="filterYtdByScene('运动健康')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑥运动健康" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#52c41a">🏃</div>
           <div class="scene-name">运动健康</div>
           <div class="scene-count">5 品</div>
@@ -3169,6 +3358,7 @@ body {
       <div class="scene-grid">
         <div class="scene-card " 
              data-scene="美容养颜" onclick="filterByScene('美容养颜')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑫美容养颜" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#ff7875">✨</div>
           <div class="scene-name">美容养颜</div>
           <div class="scene-count">35品</div>
@@ -3176,6 +3366,7 @@ body {
         
         <div class="scene-card " 
              data-scene="心脑养护" onclick="filterByScene('心脑养护')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-③心脑养护" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#fa8c16">🧠</div>
           <div class="scene-name">心脑养护</div>
           <div class="scene-count">16品</div>
@@ -3183,6 +3374,7 @@ body {
         
         <div class="scene-card " 
              data-scene="消化调理" onclick="filterByScene('消化调理')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑪消化调理" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#a0d911">🌾</div>
           <div class="scene-name">消化调理</div>
           <div class="scene-count">16品</div>
@@ -3190,6 +3382,7 @@ body {
         
         <div class="scene-card " 
              data-scene="清体排毒" onclick="filterByScene('清体排毒')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑤清体排毒" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#13c2c2">🌿</div>
           <div class="scene-name">清体排毒</div>
           <div class="scene-count">7品</div>
@@ -3197,6 +3390,7 @@ body {
         
         <div class="scene-card " 
              data-scene="增强免疫" onclick="filterByScene('增强免疫')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑨增强免疫" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#faad14">🛡️</div>
           <div class="scene-name">增强免疫</div>
           <div class="scene-count">6品</div>
@@ -3204,6 +3398,7 @@ body {
         
         <div class="scene-card " 
              data-scene="维矿补充" onclick="filterByScene('维矿补充')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-①维矿补充" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#1890ff">💊</div>
           <div class="scene-name">维矿补充</div>
           <div class="scene-count">12品</div>
@@ -3211,6 +3406,7 @@ body {
         
         <div class="scene-card " 
              data-scene="女性特护" onclick="filterByScene('女性特护')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-②女性特护" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#eb2f96">💜</div>
           <div class="scene-name">女性特护</div>
           <div class="scene-count">8品</div>
@@ -3218,6 +3414,7 @@ body {
         
         <div class="scene-card " 
              data-scene="减肥塑形" onclick="filterByScene('减肥塑形')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑩减肥塑形" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#ff9a3c">⚖️</div>
           <div class="scene-name">减肥塑形</div>
           <div class="scene-count">8品</div>
@@ -3225,6 +3422,7 @@ body {
         
         <div class="scene-card " 
              data-scene="睡眠改善" onclick="filterByScene('睡眠改善')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑦睡眠改善" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#2f54eb">🌙</div>
           <div class="scene-name">睡眠改善</div>
           <div class="scene-count">8品</div>
@@ -3232,6 +3430,7 @@ body {
         
         <div class="scene-card " 
              data-scene="情绪管理" onclick="filterByScene('情绪管理')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑧情绪管理" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#73d13d">💚</div>
           <div class="scene-name">情绪管理</div>
           <div class="scene-count">8品</div>
@@ -3239,6 +3438,7 @@ body {
         
         <div class="scene-card " 
              data-scene="缓解疲劳" onclick="filterByScene('缓解疲劳')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-④缓解疲劳" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#722ed1">⚡</div>
           <div class="scene-name">缓解疲劳</div>
           <div class="scene-count">8品</div>
@@ -3246,6 +3446,7 @@ body {
         
         <div class="scene-card " 
              data-scene="运动健康" onclick="filterByScene('运动健康')">
+          <a class="scene-archive" href="https://fe-static.xhscdn.com/formula-static/aibibp/9ezcvd07/onepage_index_v2.html#scene-⑥运动健康" target="_blank" onclick="event.stopPropagation()" title="查看该场景商品档案">📖</a>
           <div class="scene-icon" style="background:#52c41a">🏃</div>
           <div class="scene-name">运动健康</div>
           <div class="scene-count">8品</div>
@@ -8562,7 +8763,225 @@ function filterBuyerGroup(group) {
   });
 })();
 </script>
+<script>
+  // Embed 模式：URL 带 ?embed=1 时隐藏无关模块，仅保留 3 个货盘 tab；并套用月报深色主题
+  if (new URLSearchParams(location.search).get('embed') === '1') {
+    document.body.classList.add('embed-mode');
+    document.documentElement.classList.add('embed-mode-html');
+    const style = document.createElement('style');
+    style.textContent = `
+      /* 隐藏 embed 无关模块 */
+      .embed-mode .header,
+      .embed-mode .footer,
+      .embed-mode [class*="ov-section"],
+      .embed-mode .kpi-row,
+      .embed-mode .lxm-section,
+      .embed-mode .lx-section,
+      .embed-mode [data-tab="buyer-group"],
+      .embed-mode #tab-buyer-group { display: none !important; }
+      .embed-mode .container { padding-top: 8px; max-width: 100%; }
+      .embed-mode .tabs { margin-top: 0; }
+
+      /* 深色主题覆盖（对齐月报深墨绿背景） */
+      html.embed-mode-html, .embed-mode {
+        background: linear-gradient(135deg,#0a1f1a 0%,#0b1614 50%,#0a1f2a 100%) !important;
+        color: #e2e8f0 !important;
+      }
+      .embed-mode .container { background: transparent !important; }
+
+      /* Tab 栏 */
+      .embed-mode .tabs {
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 12px !important;
+        padding: 4px !important;
+      }
+      .embed-mode .tab-btn {
+        background: transparent !important;
+        color: #94a3b8 !important;
+        border: 0 !important;
+      }
+      .embed-mode .tab-btn.active {
+        background: linear-gradient(135deg,rgba(16,185,129,0.28),rgba(20,184,166,0.20)) !important;
+        color: #a7f3d0 !important;
+        box-shadow: 0 2px 8px rgba(16,185,129,0.15) !important;
+      }
+
+      /* 场景卡片 */
+      .embed-mode .scene-card {
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        color: #e2e8f0 !important;
+      }
+      .embed-mode .scene-card:hover {
+        background: rgba(255,255,255,0.07) !important;
+        border-color: rgba(16,185,129,0.35) !important;
+      }
+      .embed-mode .scene-card.selected {
+        background: linear-gradient(135deg,rgba(16,185,129,0.18),rgba(20,184,166,0.12)) !important;
+        border-color: rgba(16,185,129,0.55) !important;
+      }
+      .embed-mode .scene-card .scene-name { color: #f0fdf4 !important; }
+      .embed-mode .scene-card .scene-count { color: #94a3b8 !important; }
+
+      /* 卡片/表格容器 */
+      .embed-mode .tab-panel > div,
+      .embed-mode .qualified-section,
+      .embed-mode .ytd-section,
+      .embed-mode .potential-section {
+        background: rgba(255,255,255,0.03) !important;
+      }
+      .embed-mode h2, .embed-mode h3 { color: #a7f3d0 !important; }
+      .embed-mode .section-desc, .embed-mode .subtitle { color: #94a3b8 !important; }
+
+      /* 表格 */
+      .embed-mode table {
+        background: rgba(15,25,22,0.55) !important;
+        color: #e2e8f0 !important;
+        border: 1px solid rgba(255,255,255,0.06) !important;
+      }
+      .embed-mode thead th {
+        background: rgba(16,185,129,0.10) !important;
+        color: #a7f3d0 !important;
+        border-bottom: 1px solid rgba(16,185,129,0.28) !important;
+      }
+      .embed-mode tbody tr {
+        border-bottom: 0 !important;
+        border-color: transparent !important;
+      }
+      .embed-mode tbody td {
+        color: #e2e8f0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.035) !important;
+        border-top: none !important;
+      }
+      .embed-mode tbody tr:last-child td {
+        border-bottom: none !important;
+      }
+      .embed-mode tbody tr:hover td {
+        background: rgba(16,185,129,0.05) !important;
+      }
+      .embed-mode tbody td a { color: #6ee7b7 !important; }
+      .embed-mode tbody td b { color: #f0fdf4 !important; }
+      .embed-mode tbody tr:hover,
+      .embed-mode .data-table tr:hover { background: transparent !important; }
+
+      /* 列头 hover / 排序激活 —— 覆盖浅色主题的白底黑字 */
+      .embed-mode .data-table.sortable th[data-sort]:hover,
+      .embed-mode thead th:hover {
+        background: rgba(16,185,129,0.20) !important;
+        color: #d1fae5 !important;
+      }
+      .embed-mode .data-table.sortable th.sort-active,
+      .embed-mode .data-table.sortable th.sort-asc,
+      .embed-mode .data-table.sortable th.sort-desc {
+        background: rgba(16,185,129,0.16) !important;
+        color: #a7f3d0 !important;
+      }
+      .embed-mode .data-table.sortable th::after,
+      .embed-mode .data-table.sortable th[data-sort]::after {
+        color: rgba(167,243,208,0.55) !important;
+      }
+      .embed-mode .data-table.sortable th.sort-asc::after,
+      .embed-mode .data-table.sortable th.sort-desc::after {
+        color: #6ee7b7 !important;
+      }
+
+      /* 场景卡/lx卡的 hover 白底覆盖 */
+      .embed-mode .scene-card:hover,
+      .embed-mode .ov-card:hover,
+      .embed-mode .lx-card:hover {
+        background: rgba(16,185,129,0.10) !important;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.30) !important;
+      }
+
+      /* 商品名/店铺名/买手名等具名元素（原浅色主题深灰在深色背景不可见） */
+      .embed-mode .prod-name,
+      .embed-mode .item-name,
+      .embed-mode .buyer-name,
+      .embed-mode .shop-name,
+      .embed-mode .name,
+      .embed-mode .title,
+      .embed-mode td .name,
+      .embed-mode td .title {
+        color: #f0fdf4 !important;
+        font-weight: 500 !important;
+        line-height: 1.5 !important;
+        letter-spacing: 0.2px !important;
+      }
+      .embed-mode .prod-shop,
+      .embed-mode .sub-name,
+      .embed-mode .sub-label,
+      .embed-mode .prod-meta,
+      .embed-mode .item-sub {
+        color: #94a3b8 !important;
+        margin-top: 4px !important;
+      }
+      /* 店铺 pill：从原来的浅灰亮底 → 深绿半透明底，更内敛精致 */
+      .embed-mode .shop-link,
+      .embed-mode a.shop-link,
+      .embed-mode .prod-shop a {
+        color: #86efac !important;
+        background: rgba(16,185,129,0.10) !important;
+        border: 1px solid rgba(16,185,129,0.18) !important;
+        padding: 2px 8px !important;
+        border-radius: 5px !important;
+        font-size: 11px !important;
+        font-weight: 400 !important;
+        transition: all .18s ease !important;
+      }
+      .embed-mode .shop-link:hover,
+      .embed-mode a.shop-link:hover,
+      .embed-mode .prod-shop a:hover {
+        background: rgba(16,185,129,0.22) !important;
+        color: #d1fae5 !important;
+        border-color: rgba(16,185,129,0.40) !important;
+      }
+
+      /* 全部按钮 / 徽章 */
+      .embed-mode .show-all-btn,
+      .embed-mode button:not(.tab-btn) {
+        background: rgba(255,255,255,0.06) !important;
+        color: #a7f3d0 !important;
+        border: 1px solid rgba(255,255,255,0.10) !important;
+      }
+      .embed-mode .show-all-btn:hover {
+        background: rgba(16,185,129,0.15) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // 高度自适应：向父窗口报告实际内容高度
+    function reportHeight() {
+      const h = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: 'kbo-embed-height', height: h }, '*');
+    }
+    window.addEventListener('load', () => setTimeout(reportHeight, 300));
+    // 监听 tab 切换 / 表格排序等交互也重新计算高度
+    document.addEventListener('click', () => setTimeout(reportHeight, 200));
+    // 兜底：每 2s 报一次高度
+    setInterval(reportHeight, 2000);
+  }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script>
+<script>
+  // 折线图 hover 高亮：hover 一条线/圆点/标签，其余变淡
+  document.querySelectorAll('.lc-svg').forEach(svg => {
+    const activate = idx => {
+      svg.classList.add('lc-dim');
+      svg.querySelectorAll('.lc-line,.lc-dot,.lc-label').forEach(el => {
+        el.classList.toggle('lc-active', el.getAttribute('data-idx') === String(idx));
+      });
+    };
+    const clear = () => {
+      svg.classList.remove('lc-dim');
+      svg.querySelectorAll('.lc-active').forEach(el => el.classList.remove('lc-active'));
+    };
+    svg.querySelectorAll('.lc-line,.lc-dot,.lc-label').forEach(el => {
+      el.addEventListener('mouseenter', () => activate(el.getAttribute('data-idx')));
+    });
+    svg.addEventListener('mouseleave', clear);
+  });
+</script>
 <script>
   if (window.twemoji) {
     // 仅对成分排名区做 emoji 渲染，避免影响图表/其他模块
